@@ -5,4 +5,31 @@
     <string name="title_diagnosis">Diagnosis</string>
     <string name="title_profile">Profile</string>
 
+    <string name="codes_farmer">This is icon of farmer</string>
+    <string name="codes_weather">This is icon of weather</string>
+
+    <string name="txt_heading_heal_your_plants">Sembuhkan Tanaman Kamu</string>
+    <string name="txt_heading_soon_feature">Soon</string>
+
+    <string name="txt_hallo">Hallo, Pak Tani\nSelamat Datang</string>
+    <string name="txt_city_country">City, ID</string>
+    <string name="txt_no_internet">-</string>
+    <string name="txt_info_description_weather">Kondisi cuaca saat ini</string>
+    <string name="txt_humidity">Humidity</string>
+    <string name="txt_wind_speed">Wind Speed</string>
+    <string name="txt_pressure">Pressure</string>
+    <string name="txt_scan_image">Scan Gambar</string>
+    <string name="txt_see_diagnosis">Lihat Diagnosis</string>
+    <string name="txt_medicine_recommendation">Rekomendasi Obat</string>
+    <string name="txt_button_scan_image">Ambil Gambar</string>
+    <string name="txt_fertilizer_calculator">Kalkulator\nPupuk</string>
+    <string name="txt_pest_disease"><![CDATA[Penyakit &\n Hama]]></string>
+    <string name="txt_cultivation_tips">Cultivation\nTIps</string>
+
+    <string name="result_info_city_country">%1$s, %2$s</string>
+    <string name="result_info_temperature">%1$.1f°C</string>
+    <string name="result_info_wind_speed">%1$.1f m/s</string>
+    <string name="result_info_humidity">%1$d%%</string>
+    <string name="result_info_pressure">%1$d hPa</string>
+
 </resources>
