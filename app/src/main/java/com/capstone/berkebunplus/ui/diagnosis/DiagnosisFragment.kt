@@ -22,8 +22,17 @@ class DiagnosisFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val diagnosisViewModel =
+            ViewModelProvider(this)[DiagnosisViewModel::class.java]
+
         _binding = FragmentDiagnosisBinding.inflate(inflater, container, false)
-        return binding.root
+        val root: View = binding.root
+
+        val textView: TextView = binding.textDiagnose
+        diagnosisViewModel.text.observe(viewLifecycleOwner) {
+            textView.text = it
+        }
+        return root
     }
 
     override fun onDestroyView() {

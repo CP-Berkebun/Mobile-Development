@@ -10,6 +10,7 @@
     <string name="codes_result_image_scan">This is result image of plant disease</string>
     <string name="codes_arrow_back_result_activity">This is arrow back from result scan activity</string>
     <string name="codes_symptoms">This is icon of symptoms</string>
+    <string name="savedItems">This is icon of saved result diagnosis items</string>
 
     <string name="txt_heading_heal_your_plants">Sembuhkan Tanaman Kamu</string>
     <string name="txt_heading_soon_feature">Soon</string>
@@ -43,7 +44,6 @@
     <string name="txt_result_scan_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="txt_result_scan_list_symptoms">Lorem ipsum, dolor sit amet, consectetur adipiscing elit,</string>
     <string name="txt_button_add_to_favorite">Simpan Hasil</string>
-
 
 
 </resources>
