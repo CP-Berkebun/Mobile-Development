@@ -134,7 +134,7 @@
                                 android:layout_height="80dp"
                                 android:layout_marginEnd="35dp"
                                 android:contentDescription="@string/codes_weather"
-                                android:src="@drawable/ic_plant_hand"
+                                android:src="@drawable/ic_clouds"
                                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/linearLayout5" />

@@ -35,6 +35,23 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- Custom Style for Title Content. -->
+    <style name="TextContent.TitleMedium">
+        <item name="android:textAppearance">@style/TextAppearance.Material3.TitleMedium</item>
+    </style>
+
+    <style name="TextContent.TitleMedium.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextContent.TitleLarge">
+        <item name="android:textAppearance">@style/TextAppearance.Material3.TitleLarge</item>
+    </style>
+
+    <style name="TextContent.TitleLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <!-- Custom Style for Body Content. -->
     <style name="TextContent.BodySmall">
         <item name="android:textAppearance">@style/TextAppearance.Material3.BodySmall</item>
