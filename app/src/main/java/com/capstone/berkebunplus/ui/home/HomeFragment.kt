@@ -4,17 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.capstone.berkebunplus.R
+import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,17 +20,33 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val factory = HomeViewModelFactory.getInstance()
+        val viewModel: HomeViewModel by viewModels { factory }
+
+        viewModel.weatherData.observe(viewLifecycleOwner) { results->
+            when (results) {
+                is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE}
+                is Result.Success -> {
+                    val weather = results.data
+                    binding.progressIndicator.visibility = View.GONE
+                    binding.tvCity.text = getString(R.string.result_info_city_country, weather.name, weather.sys.country)
+                    binding.tvInfoDescriptionWeather.text = weather.weather[0].description
+                    binding.tvInfoHumidityPercentage.text = getString(R.string.result_info_humidity, weather.main.humidity)
+                    binding.tvInfoWindSpeed.text = getString(R.string.result_info_wind_speed, weather.wind.speed)
+                    binding.tvInfoTemperature.text = getString(R.string.result_info_temperature, weather.main.temp)
+                    binding.tvInfoPressure.text = getString(R.string.result_info_pressure, weather.main.pressure)
+                }
+                is Result.Error -> {
+                    binding.progressIndicator.visibility = View.GONE
+                }
+            }
         }
-        return root
+        viewModel.fetchWeather()
     }
 
     override fun onDestroyView() {

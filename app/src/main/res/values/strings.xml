@@ -1,6 +1,48 @@
 <resources>
     <string name="app_name">BerkebunPlus</string>
+
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_diagnosis">Diagnosis</string>
+    <string name="title_profile">Profile</string>
+
+    <string name="codes_farmer">This is icon of farmer</string>
+    <string name="codes_weather">This is icon of weather</string>
+    <string name="codes_result_image_scan">This is result image of plant disease</string>
+    <string name="codes_arrow_back_result_activity">This is arrow back from result scan activity</string>
+    <string name="codes_symptoms">This is icon of symptoms</string>
+    <string name="savedItems">This is icon of saved result diagnosis items</string>
+
+    <string name="txt_heading_heal_your_plants">Sembuhkan Tanaman Kamu</string>
+    <string name="txt_heading_soon_feature">Soon</string>
+    <string name="txt_heading_diagnosis_description">Deskrpisi Diagnosis</string>
+    <string name="txt_heading_treatment">Treatment</string>
+    <string name="txt_heading_medicine_recommendation">Rekomendasi Obat</string>
+
+    <string name="txt_hallo">Hallo, Pak Tani\nSelamat Datang</string>
+    <string name="txt_city_country">City, ID</string>
+    <string name="txt_no_internet">-</string>
+    <string name="txt_info_description_weather">Kondisi cuaca saat ini</string>
+    <string name="txt_humidity">Humidity</string>
+    <string name="txt_wind_speed">Wind Speed</string>
+    <string name="txt_pressure">Pressure</string>
+    <string name="txt_scan_image">Scan\nGambar</string>
+    <string name="txt_see_diagnosis">Lihat\nDiagnosis</string>
+    <string name="txt_medicine_recommendation">Rekomendasi\nObat</string>
+    <string name="txt_button_scan_image">Ambil Gambar</string>
+    <string name="txt_fertilizer_calculator">Kalkulator\nPupuk</string>
+    <string name="txt_pest_disease"><![CDATA[Penyakit &\n Hama]]></string>
+    <string name="txt_cultivation_tips">Cultivation\nTIps</string>
+
+    <string name="result_info_city_country">%1$s, %2$s</string>
+    <string name="result_info_temperature">%1$.1f°C</string>
+    <string name="result_info_wind_speed">%1$.1f m/s</string>
+    <string name="result_info_humidity">%1$d%%</string>
+    <string name="result_info_pressure">%1$d hPa</string>
+
+    <string name="txt_result_scan_name">Nama Penyakit</string>
+    <string name="txt_result_scan_symptoms">Gejala</string>
+    <string name="txt_result_scan_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="txt_result_scan_list_symptoms">Lorem ipsum, dolor sit amet, consectetur adipiscing elit,</string>
+    <string name="txt_button_add_to_favorite">Simpan Hasil</string>
+
 </resources>
