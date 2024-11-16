@@ -1,19 +1,50 @@
 package com.capstone.berkebunplus.ui.home
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.capstone.berkebunplus.R
 import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.databinding.FragmentHomeBinding
+import com.capstone.berkebunplus.ui.camera.CameraActivity
+import com.capstone.berkebunplus.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private var currentImageUri: Uri? = null
+
+    private val REQUIRED_PERMISSION = android.Manifest.permission.CAMERA
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                Toast.makeText(requireContext(), "Permission request granted", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "Permission request denied", Toast.LENGTH_LONG).show()
+            }
+        }
+
+    private fun allPermissionsGranted() =
+        ContextCompat.checkSelfPermission(
+            this@HomeFragment.requireContext(),
+            REQUIRED_PERMISSION
+        ) == PackageManager.PERMISSION_GRANTED
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +78,32 @@ class HomeFragment : Fragment() {
             }
         }
         viewModel.fetchWeather()
+
+        if (!allPermissionsGranted()) {
+            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
+        }
+
+        binding.btnScanImage.setOnClickListener { startCameraX() }
+    }
+
+    private fun startCameraX() {
+        val intent = Intent(requireContext(), CameraActivity::class.java)
+        launcherIntentCameraX.launch(intent)
+    }
+
+    private val launcherIntentCameraX = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == CAMERAX_RESULT) {
+            currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
+            showImage()
+        }
+    }
+
+    private fun showImage() {
+        currentImageUri?.let {
+            Log.d("Image URI", "showImage: $it")
+        }
     }
 
     override fun onDestroyView() {

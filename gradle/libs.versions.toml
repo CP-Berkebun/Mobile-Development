@@ -1,5 +1,8 @@
 [versions]
-agp = "8.2.0-alpha10"
+agp = "8.5.2"
+camera-core = "1.5.0"
+camera-lifecycle = "1.5.0"
+camera-view = "1.5.0"
 converter-gson = "2.9.0"
 kotlin = "1.8.21"
 core-ktx = "1.9.0"
@@ -16,9 +19,13 @@ lifecycle-viewmodel-ktx = "2.8.7"
 navigation-fragment-ktx = "2.8.3"
 navigation-ui-ktx = "2.8.3"
 retrofit = "2.9.0"
+activity = "1.9.3"
 
 [libraries]
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camera-core" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera-lifecycle" }
+camera-view = { module = "androidx.camera:camera-view", version.ref = "camera-view" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converter-gson" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -33,6 +40,7 @@ lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-view
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
