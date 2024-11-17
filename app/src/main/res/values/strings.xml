@@ -5,6 +5,31 @@
     <string name="title_diagnosis">Diagnosis</string>
     <string name="title_profile">Profile</string>
 
+    <string name="berkebun_plus">Berkebun+</string>
+    <string name="title_masuk">Masuk</string>
+    <string name="title_daftar">Daftar</string>
+    <string name="txt_description_one">Dapatkan hasil panen yang lebih banyak dengan bantuan Berkebun+!</string>
+    <string name="txt_description_two">Dengan masuk atau mendaftar, kamu menyetujui kebijakan layanan dan kebijakan privasi</string>
+
+    <string name="txt_desc_login_one">Lengkapi data dirimu untuk memulai</string>
+    <string name="txt_desc_login_two">Sudah memiliki akun ?</string>
+    <string name="txt_desc_login_three">Atau masuk dengan</string>
+    <string name="txt_fullname">John Doe</string>
+    <string name="txt_email">johndoe@gmail.com</string>
+    <string name="txt_password">************</string>
+
+    <string name="txt_welcome">Selamat Datang</string>
+    <string name="txt_desc_register_one">Belum memiliki akun ?</string>
+    <string name="txt_desc_register_two">Atau daftar dengan</string>
+    <string name="my_profile">Profile Anda</string>
+    <string name="text_name">Nama</string>
+    <string name="text_email">Email</string>
+    <string name="text_password">Password</string>
+    <string name="txt_edit_profile_image">Ganti</string>
+    <string name="txt_edit_profile">Ubah</string>
+    
+    <string name="txt_btn_understand">Mengerti</string>
+
     <string name="codes_farmer">This is icon of farmer</string>
     <string name="codes_weather">This is icon of weather</string>
     <string name="codes_result_image_scan">This is result image of plant disease</string>

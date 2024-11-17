@@ -1,22 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    android:background="@color/white">
 
     <TextView
-        android:id="@+id/text_profile"
-        android:layout_width="match_parent"
+        android:id="@+id/textProfile"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:text="@string/my_profile"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textStyle="bold"
+        android:textColor="@color/dark_cyan"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Text Nama -->
+    <ImageView
+        android:id="@+id/avatarImage"
+        android:layout_width="154dp"
+        android:layout_height="154dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="105dp"
+        android:background="@drawable/round"
+        android:foregroundGravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic__account_circle_24" />
+
+    <ImageButton
+        android:id="@+id/editProfileButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/avatarImage"
+        android:layout_marginStart="-55dp"
+        android:layout_marginTop="-3dp"
+        android:layout_marginBottom="-5dp"
+        android:layout_toEndOf="@+id/avatarImage"
+        android:background="@drawable/border_button"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:paddingTop="0dp"
+        android:src="@drawable/ic_edit_24"
+        android:textColor="@color/white"
+        android:contentDescription="@string/txt_edit_profile_image" />
+
+    <TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="333dp"
+        android:text="@string/text_name"
+        android:textColor="@color/dark_cyan"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true" />
+
+    <!-- Nama Input Field -->
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="364dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="363dp"
+        android:background="@drawable/border_transparent"
+        android:hint="@string/txt_fullname"
+        android:inputType="textPersonName"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+
+    <!-- Text Alamat Email -->
+    <TextView
+        android:id="@+id/emailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="421dp"
+        android:text="@string/text_email"
+        android:textColor="@color/dark_cyan"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true" />
+
+    <!-- Email Input Field -->
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="364dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="451dp"
+        android:background="@drawable/border_transparent"
+        android:hint="@string/txt_email"
+        android:inputType="textEmailAddress"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+
+    <!-- Text Password -->
+    <TextView
+        android:id="@+id/passwordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="509dp"
+        android:text="@string/text_password"
+        android:textColor="@color/dark_cyan"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true" />
+
+    <!-- Password Input Field -->
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="364dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="539dp"
+        android:background="@drawable/border_transparent"
+        android:hint="@string/txt_password"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+
+    <!-- Button Edit Profile -->
+    <Button
+        android:id="@+id/edit_profile"
+        android:layout_width="364dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="633dp"
+        android:background="@drawable/border_button"
+        android:gravity="center"
+        android:paddingTop="0dp"
+        android:text="@string/txt_edit_profile"
+        android:textColor="@color/white" />
+</RelativeLayout>

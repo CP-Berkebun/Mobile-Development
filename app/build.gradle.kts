@@ -8,13 +8,11 @@ plugins {
 android {
     namespace = "com.capstone.berkebunplus"
     compileSdk = 34
-    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.capstone.berkebunplus"
         minSdk = 24
         targetSdk = 34
-        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -58,6 +56,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
+    implementation(libs.androidx.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -67,4 +66,11 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // CameraX
+    val cameraxVersion = "1.4.0"
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+
 }
