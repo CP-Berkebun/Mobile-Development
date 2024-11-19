@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "105590578809",
+    "project_id": "berkebunplus-fc9f2",
+    "storage_bucket": "berkebunplus-fc9f2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105590578809:android:519732cdbbef191ada3ea8",
+        "android_client_info": {
+          "package_name": "com.capstone.berkebunplus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVU7buAnCTVz37yAsT7pLj_FXY20N5Z8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
