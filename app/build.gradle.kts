@@ -3,9 +3,18 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     id("kotlin-parcelize")
+    alias(libs.plugins.googleGmsGoogleServices)
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("D:\\Project\\Capstone Project\\BerkebunKeystore\\keystore.jks")
+            storePassword = "berkebunplus"
+            keyAlias = "keyberkebun"
+            keyPassword = "berkebunplus"
+        }
+    }
     namespace = "com.capstone.berkebunplus"
     compileSdk = 34
 
@@ -17,6 +26,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig = signingConfigs.getByName("debug")
     }
 
     buildTypes {
@@ -57,6 +67,7 @@ dependencies {
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
     implementation(libs.androidx.activity)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -73,4 +84,11 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
 
+    //Firebase
+    implementation (libs.firebase.auth)
+    implementation (platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation ("com.google.firebase:firebase-analytics:22.1.2")
+    implementation ("com.google.firebase:firebase-auth-ktx")
+
+    implementation ("com.google.android.gms:play-services-auth:21.2.0")
 }

@@ -1,9 +1,10 @@
 [versions]
-agp = "8.5.2"
+agp = "8.2.0"
 camera-core = "1.5.0"
 camera-lifecycle = "1.5.0"
 camera-view = "1.5.0"
 converter-gson = "2.9.0"
+google-services = "4.4.2"
 kotlin = "1.8.21"
 core-ktx = "1.9.0"
 junit = "4.13.2"
@@ -18,8 +19,12 @@ lifecycle-livedata-ktx = "2.8.7"
 lifecycle-viewmodel-ktx = "2.8.7"
 navigation-fragment-ktx = "2.8.3"
 navigation-ui-ktx = "2.8.3"
+play-services-auth = "21.2.0"
+play-services-identity = "20.6.0"
 retrofit = "2.9.0"
 activity = "1.9.3"
+google-gms-google-services = "4.4.2"
+firebase-auth = "23.1.0"
 
 [libraries]
 androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camera-core" }
@@ -28,6 +33,7 @@ camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = 
 camera-view = { module = "androidx.camera:camera-view", version.ref = "camera-view" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converter-gson" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+google-services = { module = "com.google.gms:google-services", version.ref = "google-services" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
@@ -39,12 +45,16 @@ lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-lived
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "play-services-auth" }
+play-services-identity = { module = "com.google.android.gms:play-services-identity", version.ref = "play-services-identity" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebase-auth" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+googleGmsGoogleServices = { id = "com.google.gms.google-services", version.ref = "google-gms-google-services" }
 
 [bundles]
 
