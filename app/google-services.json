@@ -1,26 +1,44 @@
 {
   "project_info": {
-    "project_number": "105590578809",
-    "project_id": "berkebunplus-fc9f2",
-    "storage_bucket": "berkebunplus-fc9f2.firebasestorage.app"
+    "project_number": "453542349748",
+    "project_id": "berkebunplus-a3fc3",
+    "storage_bucket": "berkebunplus-a3fc3.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:105590578809:android:519732cdbbef191ada3ea8",
+        "mobilesdk_app_id": "1:453542349748:android:b716b261348bd4c13000e1",
         "android_client_info": {
           "package_name": "com.capstone.berkebunplus"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "453542349748-m6skk77pqtbsuajsvpc4p9ncak55hoj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.capstone.berkebunplus",
+            "certificate_hash": "332af9ab31b371198e7ac1f9c7f0c39b3cf406bb"
+          }
+        },
+        {
+          "client_id": "453542349748-mn2ba4dibfkrti6a7b4oqgbepo5fm3cl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBVU7buAnCTVz37yAsT7pLj_FXY20N5Z8g"
+          "current_key": "AIzaSyBSn1kB6viUQpxm3Tfk-97T8xcmsqtTdtQ"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453542349748-mn2ba4dibfkrti6a7b4oqgbepo5fm3cl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

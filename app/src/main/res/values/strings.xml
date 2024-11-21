@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BerkebunPlus</string>
+    <string name="app_name">Berkebun+</string>
 
     <string name="title_home">Home</string>
     <string name="title_diagnosis">Diagnosis</string>
@@ -25,10 +25,15 @@
     <string name="text_name">Nama</string>
     <string name="text_email">Email</string>
     <string name="text_password">Password</string>
+    <string name="txt_desc_google">Masuk dengan Google</string>
+    <string name="txt_desc_facebook">Facebook</string>
     <string name="txt_edit_profile_image">Ganti</string>
     <string name="txt_edit_profile">Ubah</string>
+    <string name="btn_logout">Keluar</string>
     
     <string name="txt_btn_understand">Mengerti</string>
+
+    <string name="default_web_client_id">453542349748-m6skk77pqtbsuajsvpc4p9ncak55hoj0.apps.googleusercontent.com</string>
 
     <string name="codes_farmer">This is icon of farmer</string>
     <string name="codes_weather">This is icon of weather</string>

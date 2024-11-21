@@ -11,24 +11,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/txt_welcome"
+        android:text="@string/title_daftar"
         android:textSize="24sp"
         android:textColor="@color/dark_cyan"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_desc_login_one"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp" />
+
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/fieldFullName"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/border_transparent"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
+        android:hint="@string/txt_fullname"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"/>
+
+    <EditText
+        android:id="@+id/fieldEmail"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/border_transparent"
+        android:layout_marginTop="20dp"
         android:hint="@string/txt_email"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"/>
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/fieldPassword"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/border_transparent"
@@ -38,9 +57,24 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"/>
 
-    <!-- Eye Icon to Toggle Password Visibility -->
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="-35dp"
+        android:src="@drawable/ic_eye_24" />
 
-    <!-- Sign Up Button -->
+    <EditText
+        android:id="@+id/confirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/border_transparent"
+        android:layout_marginTop="30dp"
+        android:hint="@string/txt_password"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"/>
 
     <ImageView
         android:layout_width="24dp"
@@ -50,17 +84,18 @@
         android:layout_marginTop="-35dp"
         android:src="@drawable/ic_eye_24" />
 
+    <!-- Account Exists Section -->
     <Button
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/border_button"
         android:text="@string/title_daftar"
         android:textColor="@color/white"
-        android:background="@drawable/border_button"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="150dp"/>
+        android:textStyle="bold" />
 
-    <!-- Account Exists Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +105,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_desc_register_two"
+            android:text="@string/txt_desc_login_two"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:layout_marginTop="0dp"
@@ -78,9 +113,10 @@
             android:layout_gravity="center"/>
 
         <TextView
+            android:id="@+id/goLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_daftar"
+            android:text="@string/title_masuk"
             android:textSize="16sp"
             android:textColor="@color/dark_cyan"
             android:layout_gravity="center"
@@ -103,7 +139,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_desc_register_two"
+            android:text="@string/txt_desc_login_three"
             android:textSize="13sp"
             android:textColor="@color/black"
             android:layout_gravity="center"
@@ -120,19 +156,34 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginTop="16dp">
+        android:backgroundTint="@color/black"
+        android:background="@drawable/border_button">
+
         <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/google"
-            android:layout_marginEnd="50dp"/>
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/facebook"/>
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="11dp"
+            android:layout_marginRight="11dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_google" />
+
+        <Button
+            android:id="@+id/btnAuthGoogle"
+            android:layout_width="288dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            android:gravity="left"
+            android:text="@string/txt_desc_google"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
     </LinearLayout>
+
 
 </LinearLayout>
