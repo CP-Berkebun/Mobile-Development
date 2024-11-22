@@ -1,19 +1,18 @@
-package com.capstone.berkebunplus.data.remote
+package com.capstone.berkebunplus.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.data.remote.response.WeatherResponse
 import com.capstone.berkebunplus.data.remote.retrofit.ApiService
 
-class WeatherRepository(private val apiService: ApiService) {
+class BerkebunRepository(private val apiServiceWeather: ApiService) {
     private val _weatherData = MutableLiveData<Result<WeatherResponse>>()
     val weatherData: LiveData<Result<WeatherResponse>> = _weatherData
 
     suspend fun getWeather() {
         _weatherData.postValue(Result.Loading)
         try {
-            val response = apiService.getWeather()
+            val response = apiServiceWeather.getWeather()
             _weatherData.postValue(Result.Success(response))
         } catch (e: Exception) {
             _weatherData.postValue(Result.Error("Error: ${e.message}"))
@@ -22,12 +21,12 @@ class WeatherRepository(private val apiService: ApiService) {
 
     companion object {
         @Volatile
-        private var instance: WeatherRepository? = null
+        private var instance: BerkebunRepository? = null
         fun getInstance(
             apiService: ApiService
-        ): WeatherRepository =
+        ): BerkebunRepository =
             instance ?: synchronized(this) {
-                instance ?: WeatherRepository(apiService)
+                instance ?: BerkebunRepository(apiService)
             }.also { instance = it }
     }
 }

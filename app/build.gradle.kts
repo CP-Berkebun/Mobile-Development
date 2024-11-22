@@ -27,6 +27,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         signingConfig = signingConfigs.getByName("debug")
+        buildConfigField("String", "BASE_URL_WEATHER", "\"https://api.openweathermap.org/\"")
     }
 
     buildTypes {
@@ -91,4 +92,13 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth-ktx")
 
     implementation ("com.google.android.gms:play-services-auth:21.2.0")
+
+    // Data Store
+    implementation ("androidx.datastore:datastore-preferences:1.1.1")
+
+    // OnBoarding page indicator
+    implementation("com.tbuonomo:dotsindicator:5.0")
+
+    // Swipe Refresh
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

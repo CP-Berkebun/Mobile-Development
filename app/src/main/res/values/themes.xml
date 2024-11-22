@@ -11,16 +11,13 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- Custom Fonts. -->
+        <item name="android:fontFamily">@font/plusjakartasans_regular</item>
     </style>
 
     <style name="TextContent">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="TextContent.Bold">
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextContent.HeadingMedium">
@@ -31,25 +28,13 @@
         <item name="android:textAppearance">@style/TextAppearance.Material3.TitleMedium</item>
     </style>
 
-    <style name="TextContent.HeadingMedium.Bold">
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <!-- Custom Style for Title Content. -->
     <style name="TextContent.TitleMedium">
         <item name="android:textAppearance">@style/TextAppearance.Material3.TitleMedium</item>
     </style>
 
-    <style name="TextContent.TitleMedium.Bold">
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <style name="TextContent.TitleLarge">
         <item name="android:textAppearance">@style/TextAppearance.Material3.TitleLarge</item>
-    </style>
-
-    <style name="TextContent.TitleLarge.Bold">
-        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- Custom Style for Body Content. -->
@@ -57,17 +42,10 @@
         <item name="android:textAppearance">@style/TextAppearance.Material3.BodySmall</item>
     </style>
 
-    <style name="TextContent.BodySmall.Bold">
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <style name="TextContent.BodyMedium">
         <item name="android:textAppearance">@style/TextAppearance.Material3.BodyMedium</item>
     </style>
 
-    <style name="TextContent.BodyMedium.Bold">
-        <item name="android:textStyle">bold</item>
-    </style>
 
     <!-- Custom Style for CardView Soon Feature. -->
     <style name="CustomCardView" parent="Widget.MaterialComponents.CardView">
@@ -85,4 +63,5 @@
     <style name="CustomButtonStyle" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/btn_selector1</item>
     </style>
+
 </resources>

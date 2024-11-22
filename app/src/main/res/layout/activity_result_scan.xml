@@ -46,18 +46,19 @@
             <TextView
                 style="@style/TextContent.TitleMedium"
                 android:text="@string/title_diagnosis"
-                android:textStyle="italic"
+                android:fontFamily="@font/plusjakartasans_lightitalic"
                 android:layout_marginBottom="56dp"
                 android:layout_marginStart="20dp"
                 android:layout_gravity="start|bottom"/>
 
             <TextView
                 android:id="@+id/tv_diagnosis_result_name"
-                style="@style/TextContent.TitleLarge.Bold"
+                style="@style/TextContent.TitleLarge"
                 android:text="@string/txt_result_scan_name"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="25dp"
+                android:fontFamily="@font/plusjakartasans_bold"
+                android:layout_marginBottom="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_gravity="start|bottom"/>
 
@@ -99,9 +100,10 @@
 
                     <TextView
                         android:id="@+id/textView2"
-                        style="@style/TextContent.TitleLarge.Bold"
+                        style="@style/TextContent.TitleLarge"
                         android:layout_marginStart="20dp"
                         android:text="@string/txt_result_scan_symptoms"
+                        android:fontFamily="@font/plusjakartasans_bold"
                         app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -128,11 +130,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    style="@style/TextContent.HeadingMedium.Bold"
+                    style="@style/TextContent.HeadingMedium"
                     android:layout_marginStart="0dp"
                     android:layout_marginVertical="10dp"
                     android:drawablePadding="8dp"
                     android:text="@string/txt_heading_diagnosis_description"
+                    android:fontFamily="@font/plusjakartasans_bold"
                     app:drawableStartCompat="@drawable/ic_mingcute_warning_line"/>
 
                 <TextView
@@ -142,11 +145,12 @@
                     android:text="@string/txt_result_scan_lorem" />
 
                 <TextView
-                    style="@style/TextContent.HeadingMedium.Bold"
+                    style="@style/TextContent.HeadingMedium"
                     android:layout_marginStart="0dp"
                     android:layout_marginVertical="10dp"
                     android:drawablePadding="8dp"
                     android:text="@string/txt_heading_treatment"
+                    android:fontFamily="@font/plusjakartasans_bold"
                     app:drawableStartCompat="@drawable/ic_hugeicons_treatment" />
 
                 <TextView
@@ -156,11 +160,12 @@
                     android:text="@string/txt_result_scan_lorem" />
 
                 <TextView
-                    style="@style/TextContent.HeadingMedium.Bold"
+                    style="@style/TextContent.HeadingMedium"
                     android:layout_marginStart="0dp"
                     android:layout_marginVertical="10dp"
                     android:drawablePadding="8dp"
                     android:text="@string/txt_heading_medicine_recommendation"
+                    android:fontFamily="@font/plusjakartasans_bold"
                     app:drawableStartCompat="@drawable/ic_hugeicons_medicine_syrup"/>
 
                 <TextView
@@ -175,7 +180,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="@string/txt_button_add_to_favorite" />
+                    android:text="@string/txt_button_add_to_favorite"
+                    android:fontFamily="@font/plusjakartasans_bold"/>
             </LinearLayout>
 
         </LinearLayout>
