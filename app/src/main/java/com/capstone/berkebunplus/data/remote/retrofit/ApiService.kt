@@ -12,4 +12,6 @@ interface ApiService {
         @Query("appid") apiKey: String = BuildConfig.API_KEY,
         @Query("units") units: String = "metric"
     ): WeatherResponse
+
+    // setup api service and put another endpoint API here (in case we will put detection APIs endpoint)
 }

@@ -27,6 +27,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         signingConfig = signingConfigs.getByName("debug")
+        buildConfigField("String", "BASE_URL_WEATHER", "\"https://api.openweathermap.org/\"")
     }
 
     buildTypes {

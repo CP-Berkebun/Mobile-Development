@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import com.capstone.berkebunplus.data.remote.response.WeatherResponse
 import com.capstone.berkebunplus.data.remote.retrofit.ApiService
 
-class BerkebunRepository(private val apiService: ApiService) {
+class BerkebunRepository(private val apiServiceWeather: ApiService) {
     private val _weatherData = MutableLiveData<Result<WeatherResponse>>()
     val weatherData: LiveData<Result<WeatherResponse>> = _weatherData
 
     suspend fun getWeather() {
         _weatherData.postValue(Result.Loading)
         try {
-            val response = apiService.getWeather()
+            val response = apiServiceWeather.getWeather()
             _weatherData.postValue(Result.Success(response))
         } catch (e: Exception) {
             _weatherData.postValue(Result.Error("Error: ${e.message}"))
