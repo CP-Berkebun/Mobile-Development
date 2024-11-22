@@ -88,5 +88,13 @@
     <string name="txt_onboarding3_desc">Setelah scan, akan muncul informasi\ndiagnosis penyakit dan treatmentnya</string>
     <string name="txt_button_getStarted">Mulai</string>
     <string name="search_diagnosis_result">Cari Hasil Diagnosis</string>
+    <string name="txt_about_app">Tentang Aplikasi</string>
+    <string name="txt_what_is_in_it">Ada Apa Saja?</string>
+    <string name="txt_main_feature">Fitur Utama</string>
+    <string name="txt_desc_about_app">Berkebun+ adalah aplikasi yang dirancang untuk membantu para pecinta tanaman dalam merawat tanaman mereka dengan lebih efektif. Aplikasi ini dapat mendeteksi berbagai jenis penyakit atau hama yang menyerang tanaman dan memberikan rekomendasi perawatan yang tepat untuk mengatasi masalah tersebut. Selain itu, Berkebun+ menawarkan fitur to-do list yang memandu pengguna dalam langkah-langkah perbaikan untuk memastikan tanaman dapat pulih dan tetap sehat. Dengan dukungan Berkebun+, perawatan tanaman menjadi lebih terarah dan mudah dilakukan.</string>
+    <string name="txt_desc_what_is_in_it">1. Informasi seputar tanaman.\n2. Informasi seputar cuaca terkini.\n3. AI-Scanning untuk mendeteksi penyakit pada tanaman.\n4. Dapat mendeteksi penyakit tanaman melalui kamera atau gallery pada smartphone.\n5. Menampilkan hasil diagnosis pada tanaman.\n6. Informasi treatment pada tanaman.\n7. Interface yang user-friendly.</string>
+    <string name="txt_ai_scanning">AI Scanning</string>
+    <string name="txt_desc_main_feature">Pada fitur utama ini metode pengklasifikasian penyakit tanamannya menggunakan metode Convolutional Neural Network (CNN).</string>
+    <string name="berkebunplus">BERKEBUN+</string>
 
 </resources>
