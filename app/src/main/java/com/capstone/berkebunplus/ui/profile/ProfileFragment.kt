@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.berkebunplus.databinding.FragmentProfileBinding
 import com.capstone.berkebunplus.ui.auth.login.LoginActivity
+import com.capstone.berkebunplus.ui.start.StartActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
@@ -37,7 +38,7 @@ class ProfileFragment : Fragment() {
         // Set tombol logout
         binding.btnLogout.setOnClickListener {
             firebaseAuth.signOut() // Logout dari Firebase
-            val intent = Intent(requireContext(), LoginActivity::class.java) // Perbaiki Context
+            val intent = Intent(requireContext(), StartActivity::class.java) // Perbaiki Context
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }

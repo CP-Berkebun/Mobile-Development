@@ -1,20 +1,20 @@
-package com.capstone.berkebunplus.ui.start
+package com.capstone.berkebunplus.ui.onboarding
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.capstone.berkebunplus.databinding.ActivityStartBinding
-import com.capstone.berkebunplus.ui.auth.login.LoginActivity
+import com.capstone.berkebunplus.adapter.OnboardingAdapter
+import com.capstone.berkebunplus.databinding.ActivityOnBoardingBinding
 
-class StartActivity : AppCompatActivity() {
-    private var _binding: ActivityStartBinding? = null
+class OnBoardingActivity : AppCompatActivity() {
+    private var _binding: ActivityOnBoardingBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityStartBinding.inflate(layoutInflater)
+        _binding = ActivityOnBoardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupView()
@@ -35,12 +35,20 @@ class StartActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.buttonMasuk.setOnClickListener {
-            val intent = Intent(this@StartActivity, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            finish()
-        }
+        val fragmentList = arrayListOf(
+            FirstScreen(),
+            SecondScreen(),
+            ThirdScreen()
+        )
+
+        val adapter = OnboardingAdapter(
+            fragmentList,
+            supportFragmentManager,
+            lifecycle
+        )
+
+        binding.viewPager.adapter = adapter
+        binding.dotsIndicator.attachTo(binding.viewPager)
     }
 
     override fun onDestroy() {
