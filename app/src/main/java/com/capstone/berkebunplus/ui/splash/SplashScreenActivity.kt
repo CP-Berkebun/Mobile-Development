@@ -15,17 +15,19 @@ import androidx.core.view.WindowInsetsCompat
 import com.capstone.berkebunplus.MainActivity
 import com.capstone.berkebunplus.ui.onboarding.OnBoardingActivity
 import com.capstone.berkebunplus.R
-import com.capstone.berkebunplus.ui.OnBoardingPreferences
-import com.capstone.berkebunplus.ui.dataStore
+import com.capstone.berkebunplus.data.local.datastore.SettingViewModel
+import com.capstone.berkebunplus.data.local.datastore.SettingViewModelFactory
+import com.capstone.berkebunplus.data.local.datastore.SettingPreferences
+import com.capstone.berkebunplus.data.local.datastore.dataStore
 import com.capstone.berkebunplus.ui.start.StartActivity
 import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
 
-    private lateinit var onBoardingPreferences: OnBoardingPreferences
-    private val viewModel: SplashScreenViewModel by viewModels {
-        SplashScreenViewModelFactory(applicationContext)
+    private lateinit var onBoardingPreferences: SettingPreferences
+    private val viewModel: SettingViewModel by viewModels {
+        SettingViewModelFactory(applicationContext)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +56,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        onBoardingPreferences = OnBoardingPreferences(application.dataStore)
+        onBoardingPreferences = SettingPreferences(application.dataStore)
         Handler(Looper.getMainLooper()).postDelayed({
             val currentUser = FirebaseAuth.getInstance().currentUser
             if (currentUser != null) {
