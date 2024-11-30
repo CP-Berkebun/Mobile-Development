@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class SettingPreferences (private val dataStore: DataStore<Preferences>){
-    private val IS_ONBOARDED = booleanPreferencesKey("is_onboarded")
 
     suspend fun setOnboarded(onboarded: Boolean) {
         dataStore.edit { preferences ->
@@ -19,8 +18,22 @@ class SettingPreferences (private val dataStore: DataStore<Preferences>){
         }
     }
 
-    val isOnboarded: Flow<Boolean> = dataStore.data
-        .map { preferences ->
+    fun isOnboarded(): Flow<Boolean> {
+        return dataStore.data.map { preferences ->
             preferences[IS_ONBOARDED] ?: false
         }
+    }
+
+    companion object {
+        private var INSTANCE: SettingPreferences? = null
+        private val IS_ONBOARDED = booleanPreferencesKey("is_onboarded")
+
+        fun getInstance(dataStore: DataStore<Preferences>): SettingPreferences {
+            return INSTANCE ?: synchronized(this) {
+                val instance = SettingPreferences(dataStore)
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
 }

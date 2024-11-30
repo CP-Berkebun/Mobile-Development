@@ -2,31 +2,56 @@ package com.capstone.berkebunplus.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
+import com.capstone.berkebunplus.data.local.datastore.SettingPreferences
 import com.capstone.berkebunplus.data.remote.response.WeatherResponse
 import com.capstone.berkebunplus.data.remote.retrofit.ApiService
 
-class BerkebunRepository(private val apiServiceWeather: ApiService) {
+class BerkebunRepository(
+    private val preferences: SettingPreferences,
+    private val apiServiceWeather: ApiService
+) {
     private val _weatherData = MutableLiveData<Result<WeatherResponse>>()
     val weatherData: LiveData<Result<WeatherResponse>> = _weatherData
 
-    suspend fun getWeather() {
-        _weatherData.postValue(Result.Loading)
+    fun getWeather() = liveData {
+        emit(Result.Loading)
         try {
             val response = apiServiceWeather.getWeather()
-            _weatherData.postValue(Result.Success(response))
+            emit(Result.Success(response))
         } catch (e: Exception) {
-            _weatherData.postValue(Result.Error("Error: ${e.message}"))
+            emit(Result.Error("${e.message}"))
         }
     }
+
+    suspend fun setOnboarded(onboarded: Boolean) {
+        preferences.setOnboarded(onboarded)
+    }
+
+    fun getOnboardingStatus(): LiveData<Boolean> {
+        return preferences.isOnboarded().asLiveData()
+    }
+
+//    suspend fun getWeather() {
+//        _weatherData.postValue(Result.Loading)
+//        try {
+//            val response = apiServiceWeather.getWeather()
+//            _weatherData.postValue(Result.Success(response))
+//        } catch (e: Exception) {
+//            _weatherData.postValue(Result.Error("Error: ${e.message}"))
+//        }
+//    }
 
     companion object {
         @Volatile
         private var instance: BerkebunRepository? = null
         fun getInstance(
+            preferences: SettingPreferences,
             apiService: ApiService
         ): BerkebunRepository =
             instance ?: synchronized(this) {
-                instance ?: BerkebunRepository(apiService)
+                instance ?: BerkebunRepository(preferences, apiService)
             }.also { instance = it }
     }
 }

@@ -25,6 +25,9 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: HomeViewModel by viewModels {
+        ViewModelFactory.getInstance(requireContext())
+    }
 
     private var currentImageUri: Uri? = null
 
@@ -57,10 +60,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val factory = ViewModelFactory.getInstance()
-        val viewModel: HomeViewModel by viewModels { factory }
 
-        viewModel.weatherData.observe(viewLifecycleOwner) { results->
+        viewModel.fetchWeather().observe(viewLifecycleOwner) { results->
             when (results) {
                 is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE}
                 is Result.Success -> {
