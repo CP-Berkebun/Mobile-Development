@@ -21,20 +21,25 @@
             android:text="@string/berkebun_plus"
             android:textColor="@color/black"
             android:textSize="36sp"
-            android:fontFamily="@font/plusjakartasans_extrabold"/>
-
+            android:alpha="0"
+            android:fontFamily="@font/plusjakartasans_extrabold"
+            tools:alpha="100"/>
 
         <Button
             android:id="@+id/button_masuk"
+            style="@style/Widget.Material3.Button"
             android:layout_width="330dp"
-            android:layout_height="48dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/text_description"
             android:layout_alignParentStart="true"
             android:layout_marginStart="42dp"
             android:layout_marginTop="80dp"
-            android:background="@drawable/border_button"
             android:text="@string/title_masuk"
-            android:fontFamily="@font/plusjakartasans_extrabold"/>
+            android:textSize="18sp"
+            android:backgroundTint="@color/lime_green"
+            android:alpha="0"
+            android:fontFamily="@font/plusjakartasans_extrabold"
+            tools:alpha="100"/>
 
         <TextView
             android:id="@+id/text_agreement"
@@ -47,7 +52,9 @@
             android:gravity="center"
             android:text="@string/txt_description_two"
             android:textColor="@color/black"
-            android:textSize="11sp" />
+            android:alpha="0"
+            android:textSize="11sp"
+            tools:alpha="100"/>
 
         <TextView
             android:id="@+id/text_description"
@@ -67,9 +74,11 @@
             android:id="@+id/image_avatar"
             android:layout_width="300dp"
             android:layout_height="300dp"
+            android:alpha="0"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="55dp"
             android:layout_marginTop="24dp"
-            android:src="@drawable/avatar" />
+            android:src="@drawable/avatar"
+            tools:alpha="100"/>
 </RelativeLayout>

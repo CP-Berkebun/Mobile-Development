@@ -1,8 +1,11 @@
 package com.capstone.berkebunplus.ui.start
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +22,7 @@ class StartActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
+        playAnimation()
     }
 
     private fun setupView() {
@@ -40,6 +44,25 @@ class StartActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             finish()
+        }
+    }
+
+    private fun playAnimation() {
+        val imageStart = ObjectAnimator.ofFloat(binding.imageAvatar, View.ALPHA, 1f).setDuration(300)
+        val titleStart = ObjectAnimator.ofFloat(binding.title, View.ALPHA, 1f).setDuration(300)
+        val titleDescription = ObjectAnimator.ofFloat(binding.textDescription, View.ALPHA, 1f).setDuration(300)
+        val buttonStart = ObjectAnimator.ofFloat(binding.buttonMasuk, View.ALPHA, 1f).setDuration(300)
+        val titleAgreement = ObjectAnimator.ofFloat(binding.textAgreement, View.ALPHA, 1f).setDuration(300)
+
+        AnimatorSet().apply {
+            playSequentially(
+                imageStart,
+                titleStart,
+                titleDescription,
+                buttonStart,
+                titleAgreement
+            )
+            start()
         }
     }
 

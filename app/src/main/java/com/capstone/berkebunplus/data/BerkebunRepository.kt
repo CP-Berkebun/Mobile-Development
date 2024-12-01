@@ -1,20 +1,15 @@
 package com.capstone.berkebunplus.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import com.capstone.berkebunplus.data.local.datastore.SettingPreferences
-import com.capstone.berkebunplus.data.remote.response.WeatherResponse
 import com.capstone.berkebunplus.data.remote.retrofit.ApiService
 
 class BerkebunRepository(
     private val preferences: SettingPreferences,
     private val apiServiceWeather: ApiService
 ) {
-    private val _weatherData = MutableLiveData<Result<WeatherResponse>>()
-    val weatherData: LiveData<Result<WeatherResponse>> = _weatherData
-
     fun getWeather() = liveData {
         emit(Result.Loading)
         try {

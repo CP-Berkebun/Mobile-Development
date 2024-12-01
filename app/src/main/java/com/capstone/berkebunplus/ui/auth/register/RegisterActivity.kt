@@ -2,9 +2,15 @@
 
 package com.capstone.berkebunplus.ui.auth.register
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +38,9 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupView()
+        playAnimation()
+
         firebaseAuth = FirebaseAuth.getInstance()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -56,13 +65,14 @@ class RegisterActivity : AppCompatActivity() {
             val pass = binding.fieldPassword.text.toString()
             val confirmPass = binding.confirmPassword.text.toString()
 
-            if ( fullname.isNotEmpty() && email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
+            if (fullname.isNotEmpty() && email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
                 if (pass == confirmPass) {
 
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
                             val intent = Intent(this, LoginActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
                             finish()
                         } else {
@@ -79,17 +89,31 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupView() {
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+        supportActionBar?.hide()
+    }
+
     private fun signInGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         launcher.launch(signInIntent)
     }
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            handleResults(task)
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                handleResults(task)
+            }
         }
-    }
 
     private fun handleResults(task: Task<GoogleSignInAccount>) {
         if (task.isSuccessful) {
@@ -114,6 +138,42 @@ class RegisterActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun playAnimation() {
+        val imageStart = ObjectAnimator.ofFloat(binding.imageViewRegis, View.ALPHA, 1f).setDuration(300)
+        val titleStart = ObjectAnimator.ofFloat(binding.title, View.ALPHA, 1f).setDuration(300)
+        val titleDescription =
+            ObjectAnimator.ofFloat(binding.messageTextView, View.ALPHA, 1f).setDuration(300)
+        val edtFullName =
+            ObjectAnimator.ofFloat(binding.fieldFullName, View.ALPHA, 1f).setDuration(300)
+        val edtEmail = ObjectAnimator.ofFloat(binding.fieldEmail, View.ALPHA, 1f).setDuration(300)
+        val edtPassword =
+            ObjectAnimator.ofFloat(binding.fieldPassword, View.ALPHA, 1f).setDuration(300)
+        val edtConfirmPassword =
+            ObjectAnimator.ofFloat(binding.confirmPassword, View.ALPHA, 1f).setDuration(300)
+        val btnRegister =
+            ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(300)
+        val linearLayout1 = ObjectAnimator.ofFloat(binding.layout1, View.ALPHA, 1f).setDuration(300)
+        val linearLayout2 = ObjectAnimator.ofFloat(binding.layout2, View.ALPHA, 1f).setDuration(300)
+        val linearLayout3 = ObjectAnimator.ofFloat(binding.layout3, View.ALPHA, 1f).setDuration(300)
+
+        AnimatorSet().apply {
+            playSequentially(
+                imageStart,
+                titleStart,
+                titleDescription,
+                edtFullName,
+                edtEmail,
+                edtPassword,
+                edtConfirmPassword,
+                btnRegister,
+                linearLayout1,
+                linearLayout2,
+                linearLayout3
+            )
+            start()
         }
     }
 }

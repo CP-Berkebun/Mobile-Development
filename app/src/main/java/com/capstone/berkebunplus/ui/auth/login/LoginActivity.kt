@@ -2,9 +2,15 @@
 
 package com.capstone.berkebunplus.ui.auth.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +36,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupView()
+        playAnimation()
 
         // Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
@@ -71,6 +80,19 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupView() {
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+        supportActionBar?.hide()
+    }
+
     private fun signInGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         launcher.launch(signInIntent)
@@ -106,6 +128,33 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun playAnimation() {
+        val imageStart = ObjectAnimator.ofFloat(binding.imageViewLogin, View.ALPHA, 1f).setDuration(300)
+        val titleStart = ObjectAnimator.ofFloat(binding.title, View.ALPHA, 1f).setDuration(300)
+        val titleDescription = ObjectAnimator.ofFloat(binding.messageTextView, View.ALPHA, 1f).setDuration(300)
+        val edtEmail = ObjectAnimator.ofFloat(binding.email, View.ALPHA, 1f).setDuration(300)
+        val edtPassword = ObjectAnimator.ofFloat(binding.password, View.ALPHA, 1f).setDuration(300)
+        val btnLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(300)
+        val linearLayout1 = ObjectAnimator.ofFloat(binding.layout1, View.ALPHA, 1f).setDuration(300)
+        val linearLayout2 = ObjectAnimator.ofFloat(binding.layout2, View.ALPHA, 1f).setDuration(300)
+        val linearLayout3 = ObjectAnimator.ofFloat(binding.layout3, View.ALPHA, 1f).setDuration(300)
+
+        AnimatorSet().apply {
+            playSequentially(
+                imageStart,
+                titleStart,
+                titleDescription,
+                edtEmail,
+                edtPassword,
+                btnLogin,
+                linearLayout1,
+                linearLayout2,
+                linearLayout3
+            )
+            start()
         }
     }
 
