@@ -51,7 +51,7 @@
         android:paddingEnd="16dp"
         tools:alpha="100"/>
 
-    <EditText
+    <com.capstone.berkebunplus.ui.customview.CustomEmailEditText
         android:id="@+id/fieldEmail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -65,7 +65,7 @@
         android:paddingEnd="16dp"
         tools:alpha="100"/>
 
-    <EditText
+    <com.capstone.berkebunplus.ui.customview.CustomPasswordEditText
         android:id="@+id/fieldPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -81,7 +81,7 @@
         android:paddingEnd="16dp"
         tools:alpha="100"/>
 
-    <EditText
+    <com.capstone.berkebunplus.ui.customview.CustomPasswordEditText
         android:id="@+id/confirmPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"

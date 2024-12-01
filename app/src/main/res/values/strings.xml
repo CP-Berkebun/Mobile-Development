@@ -98,5 +98,7 @@
     <string name="berkebunplus">BERKEBUN+</string>
     <string name="txt_message_login_page">Silahkan Login terlebih dahulu untuk melanjutkan</string>
     <string name="txt_message_register_page">Lengkapi data berikut agar dapat login!</string>
+    <string name="email_format_invalid">Format email salah</string>
+    <string name="password_too_short">Password terlalu pendek</string>
 
 </resources>

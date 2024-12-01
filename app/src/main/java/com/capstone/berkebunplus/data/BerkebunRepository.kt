@@ -28,16 +28,6 @@ class BerkebunRepository(
         return preferences.isOnboarded().asLiveData()
     }
 
-//    suspend fun getWeather() {
-//        _weatherData.postValue(Result.Loading)
-//        try {
-//            val response = apiServiceWeather.getWeather()
-//            _weatherData.postValue(Result.Success(response))
-//        } catch (e: Exception) {
-//            _weatherData.postValue(Result.Error("Error: ${e.message}"))
-//        }
-//    }
-
     companion object {
         @Volatile
         private var instance: BerkebunRepository? = null
