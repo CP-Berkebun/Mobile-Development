@@ -15,6 +15,7 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.capstone.berkebunplus.R
+import com.capstone.berkebunplus.ViewModelFactory
 import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.databinding.FragmentHomeBinding
 import com.capstone.berkebunplus.ui.camera.CameraActivity
@@ -56,7 +57,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val factory = HomeViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance()
         val viewModel: HomeViewModel by viewModels { factory }
 
         viewModel.weatherData.observe(viewLifecycleOwner) { results->
