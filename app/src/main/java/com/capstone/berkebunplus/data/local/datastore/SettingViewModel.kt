@@ -3,7 +3,6 @@ package com.capstone.berkebunplus.data.local.datastore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.berkebunplus.data.BerkebunRepository
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class SettingViewModel(private val repository: BerkebunRepository) : ViewModel() {

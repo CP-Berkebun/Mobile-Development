@@ -25,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import androidx.appcompat.app.AlertDialog
 
 class LoginActivity : AppCompatActivity() {
 
@@ -57,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnAuthGoogle.setOnClickListener {
+            binding.progressIndicator.visibility = View.VISIBLE
             signInGoogle()
         }
 
@@ -120,14 +122,28 @@ class LoginActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("email", account.email)
-                intent.putExtra("name", account.displayName)
-                startActivity(intent)
-                finish()
+                showSuccessDialog(account)
             } else {
                 Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun showSuccessDialog(account: GoogleSignInAccount) {
+        AlertDialog.Builder(this).apply {
+            setTitle(getString(R.string.set_title_success))
+            setMessage(getString(R.string.set_message_success))
+            setPositiveButton(getString(R.string.set_next)) { _, _ ->
+                val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    putExtra("email", account.email)
+                    putExtra("name", account.displayName)
+                }
+                startActivity(intent)
+                finish()
+            }
+            create()
+            show()
         }
     }
 

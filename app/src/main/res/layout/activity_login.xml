@@ -10,6 +10,13 @@
 
     <!-- Description -->
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/imageViewLogin"
         android:layout_width="match_parent"
@@ -34,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="@string/txt_message_login_page"
+        android:text="@string/txt_description_login_one"
         android:alpha="0"
         android:fontFamily="@font/plusjakartasans_semibold"
         tools:alpha="100"/>
@@ -79,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
-        android:text="@string/title_masuk"
+        android:text="@string/txt_btn_login"
         android:backgroundTint="@color/dark_cyan"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -104,7 +111,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="10dp"
-            android:text="@string/txt_desc_register_two"
+            android:text="@string/txt_description_login_two"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -114,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
-            android:text="@string/title_daftar"
+            android:text="@string/txt_btn_register"
             android:textSize="16sp"
             android:fontFamily="@font/plusjakartasans_bold"/>
     </LinearLayout>
@@ -138,7 +145,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_desc_register_two"
+            android:text="@string/txt_description_login_two"
             android:textSize="13sp"
             android:textColor="@color/black"
             android:layout_gravity="center"
@@ -178,7 +185,7 @@
             android:background="@drawable/border_transparent"
             android:backgroundTint="@color/grey"
             android:gravity="start|center"
-            android:text="@string/txt_desc_google"
+            android:text="@string/txt_btn_google"
             android:textAllCaps="false"
             android:textColor="@color/dark_cyan"
             android:textSize="16sp"

@@ -7,6 +7,13 @@
     android:padding="16dp"
     android:background="@color/white">
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/imageViewRegis"
         android:layout_width="match_parent"
@@ -22,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/plusjakartasans_extrabold"
-        android:text="@string/title_daftar"
+        android:text="@string/txt_title_register"
         android:alpha="0"
         android:textSize="30sp"
         tools:alpha="100"/>
@@ -32,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="@string/txt_message_register_page"
+        android:text="@string/txt_description_register_one"
         android:alpha="0"
         android:fontFamily="@font/plusjakartasans_semibold"
         tools:alpha="100"/>
@@ -45,7 +52,7 @@
         android:drawablePadding="8dp"
         android:background="@drawable/border_transparent_with_stroke"
         android:layout_marginTop="50dp"
-        android:hint="@string/txt_fullname"
+        android:hint="@string/txt_full_name"
         android:paddingStart="16dp"
         android:alpha="0"
         android:paddingEnd="16dp"
@@ -104,7 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
-        android:text="@string/title_masuk"
+        android:text="@string/txt_btn_login"
         android:backgroundTint="@color/dark_cyan"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -124,7 +131,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_desc_login_two"
+            android:text="@string/txt_description_register_two"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:layout_marginTop="0dp"
@@ -135,7 +142,7 @@
             android:id="@+id/goLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_masuk"
+            android:text="@string/txt_btn_login"
             android:textSize="16sp"
             android:textColor="@color/dark_cyan"
             android:layout_gravity="center"
@@ -161,7 +168,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_desc_login_three"
+            android:text="@string/txt_description_register_three"
             android:textSize="13sp"
             android:textColor="@color/black"
             android:layout_gravity="center"
@@ -201,7 +208,7 @@
             android:background="@drawable/border_transparent"
             android:backgroundTint="@color/grey"
             android:gravity="start|center"
-            android:text="@string/txt_desc_google"
+            android:text="@string/txt_btn_google"
             android:textAllCaps="false"
             android:textColor="@color/dark_cyan"
             android:textSize="16sp"

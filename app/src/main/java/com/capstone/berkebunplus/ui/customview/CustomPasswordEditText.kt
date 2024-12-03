@@ -22,18 +22,16 @@ class CustomPasswordEditText : AppCompatEditText {
     }
 
     private fun init() {
-        // Set hint or additional styling if needed
         hint = context.getString(R.string.txt_password)
 
-        // Add text watcher to handle real-time validation
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if ((s?.length ?: 0) < 8) {
-                    error = context.getString(R.string.password_too_short) // Show error message
+                error = if ((s?.length ?: 0) < 8) {
+                    context.getString(R.string.password_too_short)
                 } else {
-                    error = null // Clear error message if valid
+                    null
                 }
             }
 
