@@ -8,8 +8,11 @@ import retrofit2.http.Query
 interface ApiService {
     @GET("data/2.5/weather")
     suspend fun getWeather(
-        @Query("q") city: String = "Jakarta",
+        @Query("lat") latitude: Double,
+        @Query("lon") longitude: Double,
         @Query("appid") apiKey: String = BuildConfig.API_KEY,
         @Query("units") units: String = "metric"
     ): WeatherResponse
+
+    // setup api service and put another endpoint API here (in case we will put detection APIs endpoint)
 }
