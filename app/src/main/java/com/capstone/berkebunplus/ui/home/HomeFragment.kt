@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.Manifest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
@@ -20,6 +21,8 @@ import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.databinding.FragmentHomeBinding
 import com.capstone.berkebunplus.ui.camera.CameraActivity
 import com.capstone.berkebunplus.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
 class HomeFragment : Fragment() {
 
@@ -30,25 +33,37 @@ class HomeFragment : Fragment() {
     }
 
     private var currentImageUri: Uri? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    private val REQUIRED_PERMISSION = android.Manifest.permission.CAMERA
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
+    private val requestCameraPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
-                Toast.makeText(requireContext(), "Permission request granted", Toast.LENGTH_LONG).show()
+                startCameraX()
             } else {
-                Toast.makeText(requireContext(), "Permission request denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Izin kamera ditolak", Toast.LENGTH_SHORT).show()
             }
         }
 
-    private fun allPermissionsGranted() =
+    private val requestLocationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                getCurrentLocation()
+            } else {
+                Toast.makeText(requireContext(), "Izin lokasi ditolak", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    private fun isLocationPermissionGranted() =
         ContextCompat.checkSelfPermission(
-            this@HomeFragment.requireContext(),
-            REQUIRED_PERMISSION
+            requireContext(),
+            REQUIRED_PERMISSION_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
+
+    private fun isCameraPermissionGranted() =
+        ContextCompat.checkSelfPermission(
+        requireContext(),
+        REQUIRED_PERMISSION_CAMERA
+    ) == PackageManager.PERMISSION_GRANTED
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,10 +75,41 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        viewModel.fetchWeather().observe(viewLifecycleOwner) { results->
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        if (!isLocationPermissionGranted()) {
+            requestLocationPermissionLauncher.launch(REQUIRED_PERMISSION_LOCATION)
+        }
+
+        binding.btnScanImage.setOnClickListener {
+            if (!isCameraPermissionGranted()) {
+                requestCameraPermissionLauncher.launch(REQUIRED_PERMISSION_CAMERA)
+            }
+        }
+    }
+
+    private fun getCurrentLocation() {
+        try {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                location?.let {
+                    observeWeatherData(it.latitude, it.longitude)
+                } ?: run {
+                    Toast.makeText(requireContext(), "Lokasi tidak tersedia", Toast.LENGTH_SHORT).show()
+                }
+            }.addOnFailureListener { exception ->
+                Toast.makeText(requireContext(), "Gagal mendapatkan lokasi: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: SecurityException) {
+            Toast.makeText(requireContext(), "Tidak dapat mengakses lokasi: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun observeWeatherData(latitude: Double, longitude: Double) {
+        viewModel.fetchWeather(latitude, longitude).observe(viewLifecycleOwner) { results ->
             when (results) {
-                is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE}
+                is Result.Loading -> binding.progressIndicator.visibility = View.VISIBLE
                 is Result.Success -> {
                     val weather = results.data
                     binding.progressIndicator.visibility = View.GONE
@@ -74,20 +120,16 @@ class HomeFragment : Fragment() {
                     binding.tvInfoTemperature.text = getString(R.string.result_info_temperature, weather.main.temp)
                     binding.tvInfoPressure.text = getString(R.string.result_info_pressure, weather.main.pressure)
                 }
+
                 is Result.Error -> {
                     binding.progressIndicator.visibility = View.GONE
+                    Toast.makeText(requireContext(), "Gagal memuat data cuaca: ${results.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-        viewModel.fetchWeather()
-
-        if (!allPermissionsGranted()) {
-            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
-        }
-
-        binding.btnScanImage.setOnClickListener { startCameraX() }
     }
 
+    // Memulai CameraX
     private fun startCameraX() {
         val intent = Intent(requireContext(), CameraActivity::class.java)
         launcherIntentCameraX.launch(intent)
@@ -111,5 +153,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val REQUIRED_PERMISSION_CAMERA = Manifest.permission.CAMERA
+        private const val REQUIRED_PERMISSION_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
     }
 }

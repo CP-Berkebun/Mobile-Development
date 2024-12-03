@@ -6,5 +6,6 @@ import com.capstone.berkebunplus.data.BerkebunRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: BerkebunRepository) : ViewModel() {
-    fun fetchWeather() = repository.getWeather()
+    fun fetchWeather(latitude: Double, longitude: Double) =
+        repository.getWeather(latitude, longitude)
 }

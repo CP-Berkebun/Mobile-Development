@@ -101,4 +101,8 @@ dependencies {
 
     // Swipe Refresh
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    // Play Service
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+
 }

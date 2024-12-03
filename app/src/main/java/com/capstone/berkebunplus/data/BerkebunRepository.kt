@@ -10,10 +10,10 @@ class BerkebunRepository(
     private val preferences: SettingPreferences,
     private val apiServiceWeather: ApiService
 ) {
-    fun getWeather() = liveData {
+    fun getWeather(latitude: Double, longitude: Double) = liveData {
         emit(Result.Loading)
         try {
-            val response = apiServiceWeather.getWeather()
+            val response = apiServiceWeather.getWeather(latitude, longitude)
             emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error("${e.message}"))
