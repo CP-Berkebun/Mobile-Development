@@ -9,5 +9,5 @@
     <!-- Atur ketebalan dan warna border -->
     <stroke
         android:width="2dp"
-        android:color="@color/dark_cyan"/> <!-- Warna merah -->
+        android:color="@color/grey"/> <!-- Warna merah -->
 </shape>

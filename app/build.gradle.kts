@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidApplication)
@@ -69,6 +72,7 @@ dependencies {
     implementation(libs.navigation.ui.ktx)
     implementation(libs.androidx.activity)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -101,4 +105,18 @@ dependencies {
 
     // Swipe Refresh
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+
+    implementation ("com.google.firebase:firebase-storage:20.2.0")
+
+    // Dependensi Firebase SDK
+    implementation ("com.google.firebase:firebase-analytics-ktx")
+
+    // Jangan lupa untuk menambahkan plugin Firebase di bawah
+    implementation (platform("com.google.firebase:firebase-bom:32.1.1"))
+
+    implementation ("androidx.core:core-ktx:1.10.1")
+
 }

@@ -28,8 +28,25 @@
     <string name="txt_desc_google">Masuk dengan Google</string>
     <string name="txt_desc_facebook">Facebook</string>
     <string name="txt_edit_profile_image">Ganti</string>
-    <string name="txt_edit_profile">Ubah</string>
+    <string name="txt_edit_profile">Simpan</string>
     <string name="btn_logout">Keluar</string>
+
+    <string name="txt_yourName">John Doe</string>
+    <string name="txt_yourEmail">johndoe@gmail.com</string>
+    <string name="txt_about_apps">Tentang\nAplikasi</string>
+    <string name="txt_btn_edit_profile">Edit Profile</string>
+    <string name="default_user_name">Nama Pengguna</string>
+    <string name="default_user_email">Email Tidak Diketahui</string>
+
+    <string name="info_account">Akun</string>
+    <string name="desc_info_account">Informasi tentang akun kamu</string>
+    <string name="info_about_app">Tentang Aplikasi</string>
+    <string name="desc_info_about_app">Informasi tentang aplikasi Berkebun+</string>
+    <string name="info_language">Bahasa</string>
+    <string name="desc_info_language">Pilih bahasa yang kamu inginkan</string>
+
+    <string name="menu_profile">Kembali</string>
+
 
     <string name="txt_btn_understand">Mengerti</string>
 
