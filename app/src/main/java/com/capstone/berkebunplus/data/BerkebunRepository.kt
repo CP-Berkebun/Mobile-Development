@@ -1,14 +1,20 @@
 package com.capstone.berkebunplus.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import com.capstone.berkebunplus.data.local.datastore.SettingPreferences
 import com.capstone.berkebunplus.data.remote.retrofit.ApiService
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 class BerkebunRepository(
     private val preferences: SettingPreferences,
-    private val apiServiceWeather: ApiService
+    private val apiServiceWeather: ApiService,
+    private val apiServicePredict: ApiService
 ) {
     fun getWeather(latitude: Double, longitude: Double) = liveData {
         emit(Result.Loading)
@@ -17,6 +23,24 @@ class BerkebunRepository(
             emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error("${e.message}"))
+        }
+    }
+
+    fun predictImage(imageFile: File, userId: String) = liveData {
+        emit(Result.Loading)
+        val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+        val multipartBody = MultipartBody.Part.createFormData(
+            "image",
+            imageFile.name,
+            requestImageFile
+        )
+        try {
+            val response = apiServicePredict.predictImage(multipartBody, userId)
+            Log.e("PredictImageSuccess", "Success predicting image: ${response.message}")
+            emit(Result.Success(response))
+        } catch (exc: Exception) {
+            Log.e("PredictImageError", "Error predicting image: ${exc.message}")
+            emit(Result.Error("${exc.message}"))
         }
     }
 
@@ -33,10 +57,11 @@ class BerkebunRepository(
         private var instance: BerkebunRepository? = null
         fun getInstance(
             preferences: SettingPreferences,
-            apiService: ApiService
+            apiServiceWeather: ApiService,
+            apiServicePredict: ApiService
         ): BerkebunRepository =
             instance ?: synchronized(this) {
-                instance ?: BerkebunRepository(preferences, apiService)
+                instance ?: BerkebunRepository(preferences, apiServiceWeather, apiServicePredict)
             }.also { instance = it }
     }
 }

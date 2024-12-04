@@ -45,14 +45,14 @@
 
             <TextView
                 style="@style/TextContent.TitleMedium"
-                android:text="@string/title_diagnosis"
+                android:text="@string/txt_result_plant_name"
                 android:fontFamily="@font/plusjakartasans_lightitalic"
                 android:layout_marginBottom="56dp"
                 android:layout_marginStart="20dp"
                 android:layout_gravity="start|bottom"/>
 
             <TextView
-                android:id="@+id/tv_diagnosis_result_name"
+                android:id="@+id/tv_result_plant_name"
                 style="@style/TextContent.TitleLarge"
                 android:text="@string/txt_result_scan_name"
                 android:textSize="25sp"
@@ -102,20 +102,21 @@
                         android:id="@+id/textView2"
                         style="@style/TextContent.TitleLarge"
                         android:layout_marginStart="20dp"
-                        android:text="@string/txt_result_scan_symptoms"
+                        android:text="@string/txt_result_scan_diseaseId"
                         android:fontFamily="@font/plusjakartasans_bold"
                         app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/result_label2"
+                        android:id="@+id/tv_result_diagnosis_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="@string/txt_result_scan_list_symptoms"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/textView2"
-                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView2"
+                        android:fontFamily="@font/plusjakartasans_bold"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>

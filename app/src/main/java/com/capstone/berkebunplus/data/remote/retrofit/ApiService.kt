@@ -1,8 +1,13 @@
 package com.capstone.berkebunplus.data.remote.retrofit
 
 import com.capstone.berkebunplus.BuildConfig
+import com.capstone.berkebunplus.data.remote.response.PredictResponse
 import com.capstone.berkebunplus.data.remote.response.WeatherResponse
+import okhttp3.MultipartBody
 import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
@@ -15,4 +20,11 @@ interface ApiService {
     ): WeatherResponse
 
     // setup api service and put another endpoint API here (in case we will put detection APIs endpoint)
+    @Multipart
+    @POST("diagnoses")
+    suspend fun predictImage(
+        @Part file: MultipartBody.Part,
+        @Part("userId") userId: String
+    ): PredictResponse
+
 }

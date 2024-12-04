@@ -12,6 +12,7 @@ object Injection {
         // This is API Config for Weather APIs
         val apiServiceWeather = ApiConfig.getWeatherApi()
         // Add another API Config in here (in case we will put detection APIs here)
-        return BerkebunRepository.getInstance(prefs, apiServiceWeather)
+        val apiServicePredict = ApiConfig.getPredictApi()
+        return BerkebunRepository.getInstance(prefs, apiServiceWeather, apiServicePredict)
     }
 }

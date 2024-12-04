@@ -28,6 +28,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         signingConfig = signingConfigs.getByName("debug")
         buildConfigField("String", "BASE_URL_WEATHER", "\"https://api.openweathermap.org/\"")
+        buildConfigField("String", "BASE_URL_PREDICT", "\"https://berkebun-capstone.et.r.appspot.com/\"")
     }
 
     buildTypes {
@@ -104,5 +105,8 @@ dependencies {
 
     // Play Service
     implementation ("com.google.android.gms:play-services-location:21.0.1")
+
+    // Glide
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
 
 }

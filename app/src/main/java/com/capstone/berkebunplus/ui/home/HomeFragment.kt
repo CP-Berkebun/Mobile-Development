@@ -10,7 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.Manifest
+import android.os.Build
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -19,11 +21,16 @@ import com.capstone.berkebunplus.R
 import com.capstone.berkebunplus.ViewModelFactory
 import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.databinding.FragmentHomeBinding
+import com.capstone.berkebunplus.reduceFileImage
 import com.capstone.berkebunplus.ui.camera.CameraActivity
 import com.capstone.berkebunplus.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
+import com.capstone.berkebunplus.ui.resultscan.ResultScanActivity
+import com.capstone.berkebunplus.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 
+@RequiresApi(Build.VERSION_CODES.Q)
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -39,6 +46,7 @@ class HomeFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
                 startCameraX()
+                Toast.makeText(requireContext(), "Izin kamera diizinkan", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Izin kamera ditolak", Toast.LENGTH_SHORT).show()
             }
@@ -48,22 +56,11 @@ class HomeFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
                 getCurrentLocation()
+                Toast.makeText(requireContext(), "Izin lokasi diizinkan", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Izin lokasi ditolak", Toast.LENGTH_SHORT).show()
             }
         }
-
-    private fun isLocationPermissionGranted() =
-        ContextCompat.checkSelfPermission(
-            requireContext(),
-            REQUIRED_PERMISSION_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-
-    private fun isCameraPermissionGranted() =
-        ContextCompat.checkSelfPermission(
-        requireContext(),
-        REQUIRED_PERMISSION_CAMERA
-    ) == PackageManager.PERMISSION_GRANTED
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,11 +78,15 @@ class HomeFragment : Fragment() {
 
         if (!isLocationPermissionGranted()) {
             requestLocationPermissionLauncher.launch(REQUIRED_PERMISSION_LOCATION)
+        } else {
+            getCurrentLocation()
         }
 
         binding.btnScanImage.setOnClickListener {
             if (!isCameraPermissionGranted()) {
                 requestCameraPermissionLauncher.launch(REQUIRED_PERMISSION_CAMERA)
+            } else {
+                startCameraX()
             }
         }
     }
@@ -140,7 +141,37 @@ class HomeFragment : Fragment() {
     ) {
         if (it.resultCode == CAMERAX_RESULT) {
             currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
-            showImage()
+            uploadImage()
+        }
+    }
+
+    private fun uploadImage() {
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        currentImageUri?.let { uri ->
+            val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
+            viewModel.predictImage(imageFile, userId).observe(viewLifecycleOwner) { result ->
+                when(result) {
+                    is Result.Success -> {
+                        binding.progressIndicator.visibility = View.GONE
+                        val intent = Intent(requireContext(), ResultScanActivity::class.java).apply {
+                            val response = result.data.data
+                            putExtra(ResultScanActivity.USER_ID_EXTRA, userId)
+                            putExtra(ResultScanActivity.IMAGE_EXTRA, response?.imageUrl)
+                            putExtra(ResultScanActivity.PLANT_EXTRA, response?.diagnoses?.plant)
+                            putExtra(ResultScanActivity.TUMBUHAN_EXTRA, response?.diagnoses?.tumbuhan)
+                            putExtra(ResultScanActivity.DISEASE_ID_EXTRA, response?.diagnoses?.penyakitId)
+                            putExtra(ResultScanActivity.DESCRIPTION_EXTRA, response?.diagnoses?.deskripsi)
+                            putExtra(ResultScanActivity.TREATMENT_EXTRA, response?.diagnoses?.treatment)
+                        }
+                        startActivity(intent)
+                    }
+                    is Result.Error -> {
+                        binding.progressIndicator.visibility = View.GONE
+                        Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                    }
+                    is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
+                }
+            }
         }
     }
 
@@ -149,6 +180,18 @@ class HomeFragment : Fragment() {
             Log.d("Image URI", "showImage: $it")
         }
     }
+
+    private fun isCameraPermissionGranted() =
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            REQUIRED_PERMISSION_CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+
+    private fun isLocationPermissionGranted() =
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            REQUIRED_PERMISSION_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
 
     override fun onDestroyView() {
         super.onDestroyView()
