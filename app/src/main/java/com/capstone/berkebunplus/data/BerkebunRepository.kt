@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import com.capstone.berkebunplus.data.local.datastore.SettingPreferences
+import com.capstone.berkebunplus.data.remote.response.SaveDiagnosesRequest
 import com.capstone.berkebunplus.data.remote.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -40,6 +41,18 @@ class BerkebunRepository(
             emit(Result.Success(response))
         } catch (exc: Exception) {
             Log.e("PredictImageError", "Error predicting image: ${exc.message}")
+            emit(Result.Error("${exc.message}"))
+        }
+    }
+
+    fun saveDiagnoses(userId: String, data: SaveDiagnosesRequest) = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiServicePredict.saveDiagnoses(userId, data)
+            Log.e("SaveDiagnosesSuccess", "Success save diagnoses: ${response.message}")
+            emit(Result.Success(response))
+        } catch (exc: Exception) {
+            Log.e("SaveDiagnosesError", "Error save diagnoses: ${exc.message}")
             emit(Result.Error("${exc.message}"))
         }
     }

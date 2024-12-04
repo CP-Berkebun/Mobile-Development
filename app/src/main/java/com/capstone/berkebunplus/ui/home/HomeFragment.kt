@@ -156,6 +156,7 @@ class HomeFragment : Fragment() {
                         val intent = Intent(requireContext(), ResultScanActivity::class.java).apply {
                             val response = result.data.data
                             putExtra(ResultScanActivity.USER_ID_EXTRA, userId)
+                            putExtra(ResultScanActivity.DIAGNOSES_ID_EXTRA, response?.diagnosedId)
                             putExtra(ResultScanActivity.IMAGE_EXTRA, response?.imageUrl)
                             putExtra(ResultScanActivity.PLANT_EXTRA, response?.diagnoses?.plant)
                             putExtra(ResultScanActivity.TUMBUHAN_EXTRA, response?.diagnoses?.tumbuhan)
