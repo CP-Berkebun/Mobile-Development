@@ -5,36 +5,40 @@
     <string name="title_diagnosis">Diagnosis</string>
     <string name="title_profile">Profile</string>
 
-    <string name="berkebun_plus">Berkebun+</string>
-    <string name="title_masuk">Masuk</string>
-    <string name="title_daftar">Daftar</string>
+    <!-- Start Strings -->
     <string name="txt_description_one">Dapatkan hasil panen yang lebih banyak dengan bantuan Berkebun+!</string>
     <string name="txt_description_two">Dengan masuk atau mendaftar, kamu menyetujui kebijakan layanan dan kebijakan privasi</string>
 
-    <string name="txt_desc_login_one">Lengkapi data dirimu untuk memulai</string>
-    <string name="txt_desc_login_two">Sudah memiliki akun ?</string>
-    <string name="txt_desc_login_three">Atau masuk dengan</string>
-    <string name="txt_fullname">John Doe</string>
+    <!-- Login & Register Strings -->
+    <string name="txt_welcome">Selamat Datang</string>
+    <string name="txt_description_login_one">Silahkan Login terlebih dahulu untuk melanjutkan</string>
+    <string name="txt_description_login_two">Atau daftar dengan</string>
+
+    <string name="txt_title_register">Daftar</string>
+    <string name="txt_description_register_one">Lengkapi data berikut agar dapat login!</string>
+    <string name="txt_description_register_two">Sudah Memiliki Akun?</string>
+    <string name="txt_description_register_three">Atau masuk dengan</string>
+    <string name="txt_full_name">John Doe</string>
+
     <string name="txt_email">johndoe@gmail.com</string>
     <string name="txt_password">************</string>
+    <string name="txt_btn_google">Akun Google yang ada</string>
+    <string name="txt_btn_login">Masuk</string>
+    <string name="txt_btn_register">Daftar</string>
 
-    <string name="txt_welcome">Selamat Datang</string>
-    <string name="txt_desc_register_one">Belum memiliki akun ?</string>
-    <string name="txt_desc_register_two">Atau daftar dengan</string>
     <string name="my_profile">Profile Anda</string>
     <string name="text_name">Nama</string>
     <string name="text_email">Email</string>
     <string name="text_password">Password</string>
-    <string name="txt_desc_google">Masuk dengan Google</string>
     <string name="txt_desc_facebook">Facebook</string>
     <string name="txt_edit_profile_image">Ganti</string>
     <string name="txt_edit_profile">Ubah</string>
     <string name="btn_logout">Keluar</string>
-    
-    <string name="txt_btn_understand">Mengerti</string>
 
+    <string name="txt_btn_understand">Mengerti</string>
     <string name="default_web_client_id">453542349748-m6skk77pqtbsuajsvpc4p9ncak55hoj0.apps.googleusercontent.com</string>
 
+    <!-- Home Page -->
     <string name="codes_farmer">This is icon of farmer</string>
     <string name="codes_weather">This is icon of weather</string>
     <string name="codes_result_image_scan">This is result image of plant disease</string>
@@ -43,7 +47,7 @@
     <string name="savedItems">This is icon of saved result diagnosis items</string>
 
     <string name="txt_heading_heal_your_plants">Sembuhkan Tanaman Kamu</string>
-    <string name="txt_heading_soon_feature">Soon</string>
+    <string name="txt_heading_soon_feature">Segera</string>
     <string name="txt_heading_diagnosis_description">Deskrpisi Diagnosis</string>
     <string name="txt_heading_treatment">Treatment</string>
     <string name="txt_heading_medicine_recommendation">Rekomendasi Obat</string>
@@ -74,5 +78,36 @@
     <string name="txt_result_scan_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="txt_result_scan_list_symptoms">Lorem ipsum, dolor sit amet, consectetur adipiscing elit,</string>
     <string name="txt_button_add_to_favorite">Simpan Hasil</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="txt_onboarding_welcome">Selamat Datang\ndi Berkebun+</string>
+    <string name="txt_onboarding_welcome_desc">"Solusi untuk mengidentifikasi penyakit pada\ntanamanmu dan panduan treatmentnya"</string>
+    <string name="txt_button_continue">Lanjutkan</string>
+
+    <string name="txt_onboarding2">Scan Tanamanmu\nSekarang!</string>
+    <string name="txt_onboarding2_desc">Kamu dapat melakukan scan tanamanmu\nmenggunakan camera atau gallery</string>
+
+    <string name="txt_onboarding3">Dapatkan Hasil\ndan Treatment!</string>
+    <string name="txt_onboarding3_desc">Setelah scan, akan muncul informasi\ndiagnosis penyakit dan treatmentnya</string>
+    <string name="txt_button_getStarted">Mulai</string>
+    <string name="search_diagnosis_result">Cari Hasil Diagnosis</string>
+    <string name="txt_about_app">Tentang Aplikasi</string>
+    <string name="txt_what_is_in_it">Ada Apa Saja?</string>
+    <string name="txt_main_feature">Fitur Utama</string>
+    <string name="txt_desc_about_app">Berkebun+ adalah aplikasi yang dirancang untuk membantu para pecinta tanaman dalam merawat tanaman mereka dengan lebih efektif. Aplikasi ini dapat mendeteksi berbagai jenis penyakit atau hama yang menyerang tanaman dan memberikan rekomendasi perawatan yang tepat untuk mengatasi masalah tersebut. Selain itu, Berkebun+ menawarkan fitur to-do list yang memandu pengguna dalam langkah-langkah perbaikan untuk memastikan tanaman dapat pulih dan tetap sehat. Dengan dukungan Berkebun+, perawatan tanaman menjadi lebih terarah dan mudah dilakukan.</string>
+    <string name="txt_desc_what_is_in_it">1. Informasi seputar tanaman.\n2. Informasi seputar cuaca terkini.\n3. AI-Scanning untuk mendeteksi penyakit pada tanaman.\n4. Dapat mendeteksi penyakit tanaman melalui kamera atau gallery pada smartphone.\n5. Menampilkan hasil diagnosis pada tanaman.\n6. Informasi treatment pada tanaman.\n7. Interface yang user-friendly.</string>
+    <string name="txt_ai_scanning">AI Scanning</string>
+    <string name="txt_desc_main_feature">Pada fitur utama ini metode pengklasifikasian penyakit tanamannya menggunakan metode Convolutional Neural Network (CNN).</string>
+    <string name="berkebunplus">BERKEBUN+</string>
+    <string name="email_format_invalid">Format email salah</string>
+    <string name="password_too_short">Password terlalu pendek</string>
+    <string name="set_title_success">Berhasil</string>
+    <string name="set_message_success">Berhasil Login dengan google!</string>
+    <string name="set_next">Lanjutkan</string>
+    <string name="txt_result_plant_name">Tumbuhan</string>
+    <string name="txt_result_scan_diseaseId">Hasil Diagnosis</string>
+    <string name="txt_button_remove_to_favorite">Hapus dari Daftar Favorite</string>
+
 
 </resources>

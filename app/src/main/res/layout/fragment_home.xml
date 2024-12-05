@@ -15,15 +15,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
+            <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/progressIndicator"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <LinearLayout
                 android:id="@+id/linearlayoutone"
@@ -58,7 +59,7 @@
                         android:text="@string/txt_hallo"
                         android:textColor="@color/white"
                         android:textSize="25sp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/plusjakartasans_bold"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageView6"
@@ -112,14 +113,16 @@
                                 <TextView
                                     android:id="@+id/tv_city"
                                     style="@style/TextContent.BodyMedium"
+                                    android:fontFamily="@font/plusjakartasans_bold"
                                     android:text="@string/txt_city_country" />
 
                                 <TextView
                                     android:id="@+id/tv_info_temperature"
-                                    style="@style/TextContent.Bold"
+                                    style="@style/TextContent"
                                     android:text="@string/txt_no_internet"
                                     android:textColor="@color/lime_green"
-                                    android:textSize="40sp" />
+                                    android:textSize="40sp"
+                                    android:fontFamily="@font/plusjakartasans_extrabold"/>
 
                                 <TextView
                                     android:id="@+id/tv_info_description_weather"
@@ -172,19 +175,21 @@
 
                                     <TextView
                                         android:id="@+id/textView8"
-                                        style="@style/TextContent.BodySmall.Bold"
+                                        style="@style/TextContent.BodySmall"
                                         android:layout_gravity="center"
                                         android:layout_marginBottom="10dp"
                                         android:gravity="center"
-                                        android:text="@string/txt_humidity" />
+                                        android:text="@string/txt_humidity"
+                                        android:fontFamily="@font/plusjakartasans_bold"/>
 
                                     <TextView
                                         android:id="@+id/tv_info_humidity_percentage"
-                                        style="@style/TextContent.BodyMedium.Bold"
+                                        style="@style/TextContent.BodyMedium"
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="@string/txt_no_internet"
-                                        android:textColor="@color/lime_green" />
+                                        android:textColor="@color/lime_green"
+                                        android:fontFamily="@font/plusjakartasans_bold"/>
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -200,19 +205,21 @@
 
                                     <TextView
                                         android:id="@+id/textView14"
-                                        style="@style/TextContent.BodySmall.Bold"
+                                        style="@style/TextContent.BodySmall"
                                         android:layout_gravity="center"
                                         android:layout_marginBottom="10dp"
                                         android:gravity="center"
-                                        android:text="@string/txt_wind_speed" />
+                                        android:text="@string/txt_wind_speed"
+                                        android:fontFamily="@font/plusjakartasans_bold"/>
 
                                     <TextView
                                         android:id="@+id/tv_info_wind_speed"
-                                        style="@style/TextContent.BodyMedium.Bold"
+                                        style="@style/TextContent.BodyMedium"
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="@string/txt_no_internet"
-                                        android:textColor="@color/lime_green" />
+                                        android:textColor="@color/lime_green"
+                                        android:fontFamily="@font/plusjakartasans_extrabold"/>
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -227,19 +234,21 @@
 
                                     <TextView
                                         android:id="@+id/textView16"
-                                        style="@style/TextContent.BodySmall.Bold"
+                                        style="@style/TextContent.BodySmall"
                                         android:layout_gravity="center"
                                         android:layout_marginBottom="10dp"
                                         android:gravity="center"
-                                        android:text="@string/txt_pressure" />
+                                        android:text="@string/txt_pressure"
+                                        android:fontFamily="@font/plusjakartasans_extrabold"/>
 
                                     <TextView
                                         android:id="@+id/tv_info_pressure"
-                                        style="@style/TextContent.BodyMedium.Bold"
+                                        style="@style/TextContent.BodyMedium"
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="@string/txt_no_internet"
-                                        android:textColor="@color/lime_green" />
+                                        android:textColor="@color/lime_green"
+                                        android:fontFamily="@font/plusjakartasans_extrabold"/>
                                 </LinearLayout>
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -255,9 +264,10 @@
 
             <TextView
                 android:id="@+id/tv_title_heal_your_plants"
-                style="@style/TextContent.HeadingMedium.Bold"
+                style="@style/TextContent.HeadingMedium"
                 android:text="@string/txt_heading_heal_your_plants"
                 android:textColor="@color/dark_cyan"
+                android:fontFamily="@font/plusjakartasans_bold"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_view_one" />
@@ -288,7 +298,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/txt_scan_image"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/plusjakartasans_bold"
                         app:drawableTopCompat="@drawable/ic_scan" />
 
                     <TextView
@@ -297,7 +307,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/txt_see_diagnosis"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/plusjakartasans_bold"
                         app:drawableTopCompat="@drawable/ic_list" />
 
                     <TextView
@@ -306,24 +316,27 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/txt_medicine_recommendation"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/plusjakartasans_bold"
                         app:drawableTopCompat="@drawable/ic_bottle" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btnScanImage"
-                    style="@style/CustomButtonStyle"
+                    style="@style/Widget.Material3.Button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:layout_marginTop="15dp"
-                    android:text="@string/txt_button_scan_image" />
+                    android:text="@string/txt_button_scan_image"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/plusjakartasans_bold"/>
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_title_soon_feature"
-                style="@style/TextContent.HeadingMedium.Bold"
+                style="@style/TextContent.HeadingMedium"
                 android:text="@string/txt_heading_soon_feature"
                 android:textColor="@color/dark_cyan"
+                android:fontFamily="@font/plusjakartasans_bold"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -354,11 +367,12 @@
 
                         <TextView
                             android:id="@+id/tv_fertilizer_calculator"
-                            style="@style/TextContent.BodySmall.Bold"
+                            style="@style/TextContent.BodySmall"
                             android:layout_gravity="center"
                             android:drawablePadding="5dp"
                             android:gravity="center"
                             android:text="@string/txt_fertilizer_calculator"
+                            android:fontFamily="@font/plusjakartasans_bold"
                             app:drawableTopCompat="@drawable/ic_calculator_pupuk" />
                     </androidx.cardview.widget.CardView>
 
@@ -372,11 +386,12 @@
 
                         <TextView
                             android:id="@+id/tv_pest_disease"
-                            style="@style/TextContent.BodySmall.Bold"
+                            style="@style/TextContent.BodySmall"
                             android:layout_gravity="center"
                             android:drawablePadding="5dp"
                             android:gravity="center"
                             android:text="@string/txt_pest_disease"
+                            android:fontFamily="@font/plusjakartasans_bold"
                             app:drawableTopCompat="@drawable/ic_caterpillar" />
                     </androidx.cardview.widget.CardView>
 
@@ -390,11 +405,12 @@
 
                         <TextView
                             android:id="@+id/tv_cultivation_tips"
-                            style="@style/TextContent.BodySmall.Bold"
+                            style="@style/TextContent.BodySmall"
                             android:layout_gravity="center"
                             android:drawablePadding="5dp"
                             android:gravity="center"
                             android:text="@string/txt_cultivation_tips"
+                            android:fontFamily="@font/plusjakartasans_bold"
                             app:drawableTopCompat="@drawable/ic_plant_hand" />
 
                     </androidx.cardview.widget.CardView>

@@ -35,19 +35,20 @@
             android:contentDescription="@string/savedItems" />
 
         <TextView
-            android:id="@+id/tv_diagnosis_name_item"
-            style="@style/TextContent.BodySmall.Bold"
+            android:id="@+id/tv_diagnosis_plant_name_item"
+            style="@style/TextContent.BodySmall"
             android:layout_marginStart="15dp"
             android:layout_marginBottom="5dp"
-            android:padding="6dp"
+            android:padding="7dp"
             android:textColor="@color/white"
             android:text="@string/txt_result_scan_name"
+            android:fontFamily="@font/plusjakartasans_semibolditalic"
             android:background="@drawable/bg_circle_strong_cyan"
-            card_view:layout_constraintBottom_toTopOf="@+id/tv_diagnosis_symptoms_item"
+            card_view:layout_constraintBottom_toTopOf="@+id/tv_diagnosisId_item"
             card_view:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/tv_diagnosis_symptoms_item"
+            android:id="@+id/tv_diagnosisId_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
@@ -56,10 +57,10 @@
             android:text="@string/txt_result_scan_symptoms"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/plusjakartasans_bold"
             card_view:layout_constraintBottom_toBottomOf="@id/iv_diagnosis_item"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_diagnosis_name_item" />
+            card_view:layout_constraintStart_toStartOf="@+id/tv_diagnosis_plant_name_item" />
 
         <TextView
             android:id="@+id/tv_diagnosis_description_item"
@@ -71,9 +72,10 @@
             android:maxLines="3"
             android:text="@string/txt_result_scan_lorem"
             android:textSize="16sp"
+            android:fontFamily="@font/plusjakartasans_light"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_diagnosis_symptoms_item"
+            card_view:layout_constraintStart_toStartOf="@+id/tv_diagnosisId_item"
             card_view:layout_constraintTop_toBottomOf="@id/iv_diagnosis_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
