@@ -1,6 +1,7 @@
 package com.capstone.berkebunplus.data.remote.retrofit
 
 import com.capstone.berkebunplus.BuildConfig
+import com.capstone.berkebunplus.data.remote.response.DiagnosesResponse
 import com.capstone.berkebunplus.data.remote.response.PredictResponse
 import com.capstone.berkebunplus.data.remote.response.SaveDiagnosesRequest
 import com.capstone.berkebunplus.data.remote.response.SaveDiagnosesResponse
@@ -36,5 +37,10 @@ interface ApiService {
         @Path("userId") userId: String,
         @Body body: SaveDiagnosesRequest
     ) : SaveDiagnosesResponse
+
+    @GET("diagnoses/{userId}")
+    suspend fun getDiagnoses(
+        @Path("userId") userId: String
+    ) : DiagnosesResponse
 
 }

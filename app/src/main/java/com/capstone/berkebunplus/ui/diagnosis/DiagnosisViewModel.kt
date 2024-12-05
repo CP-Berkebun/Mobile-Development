@@ -3,11 +3,9 @@ package com.capstone.berkebunplus.ui.diagnosis
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.capstone.berkebunplus.data.BerkebunRepository
 
-class DiagnosisViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is diagnosis Fragment"
-    }
-    val text: LiveData<String> = _text
+class DiagnosisViewModel(private val repository: BerkebunRepository) : ViewModel() {
+    fun getDiagnoses(userId: String) =
+        repository.getDiagnoses(userId)
 }

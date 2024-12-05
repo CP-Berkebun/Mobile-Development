@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.capstone.berkebunplus.data.BerkebunRepository
 import com.capstone.berkebunplus.data.local.datastore.SettingViewModel
 import com.capstone.berkebunplus.di.Injection
+import com.capstone.berkebunplus.ui.diagnosis.DiagnosisViewModel
 import com.capstone.berkebunplus.ui.home.HomeViewModel
 import com.capstone.berkebunplus.ui.resultscan.ResultScanViewModel
 
@@ -23,6 +24,10 @@ class ViewModelFactory private constructor(private val repository: BerkebunRepos
 
             modelClass.isAssignableFrom(ResultScanViewModel::class.java) -> {
                 ResultScanViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(DiagnosisViewModel::class.java) -> {
+                DiagnosisViewModel(repository) as T
             }
             // assign view model here okay
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

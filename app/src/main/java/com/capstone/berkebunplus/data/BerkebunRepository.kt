@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import com.capstone.berkebunplus.data.local.datastore.SettingPreferences
+import com.capstone.berkebunplus.data.remote.response.DiagnosesItem
 import com.capstone.berkebunplus.data.remote.response.SaveDiagnosesRequest
 import com.capstone.berkebunplus.data.remote.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
@@ -53,6 +54,23 @@ class BerkebunRepository(
             emit(Result.Success(response))
         } catch (exc: Exception) {
             Log.e("SaveDiagnosesError", "Error save diagnoses: ${exc.message}")
+            emit(Result.Error("${exc.message}"))
+        }
+    }
+
+    fun getDiagnoses(userId: String) : LiveData<Result<List<DiagnosesItem>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiServicePredict.getDiagnoses(userId)
+            val diagnoses = response.data?.diagnoses
+            if (!diagnoses.isNullOrEmpty()) {
+                Log.e("GetDiagnosesSuccess", "Success get diagnoses: ${response.message}")
+                emit(Result.Success(diagnoses))
+            } else {
+                emit(Result.Error("No diagnoses data found"))
+            }
+        } catch (exc: Exception) {
+            Log.e("GetDiagnosesError", "Error get diagnoses: ${exc.message}")
             emit(Result.Error("${exc.message}"))
         }
     }
