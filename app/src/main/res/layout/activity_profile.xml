@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+
+        <View
+            android:id="@+id/bg_rectangle"
+            android:layout_width="match_parent"
+            android:layout_height="483dp"
+            android:background="@color/dark_cyan"
+            android:scaleType="centerCrop" />
+
+
+        <View
+            android:id="@+id/rounded_box"
+            android:layout_width="match_parent"
+            android:layout_height="463dp"
+            android:layout_marginTop="300dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-64dp"
+            android:background="@drawable/round_background_profile" />
+
+        <ImageView
+            android:id="@+id/avatarImage"
+            android:layout_width="154dp"
+            android:layout_height="154dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/round"
+            android:foregroundGravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic__account_circle_24" />
+
+        <!-- Nama Input Field -->
+
+        <!-- Text Alamat Email -->
+
+        <TextView
+            android:id="@+id/nameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="310dp"
+            android:text="@string/text_name"
+            android:textColor="@color/dark_cyan"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="364dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/avatarImage"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="146dp"
+            android:background="@drawable/border_transparent"
+            android:hint="@string/txt_fullname"
+            android:inputType="textPersonName"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+        <!-- Email Input Field -->
+
+        <TextView
+            android:id="@+id/emailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameInput"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="11dp"
+            android:text="@string/text_email"
+            android:textColor="@color/dark_cyan"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="364dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/nameInput"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/border_transparent"
+            android:hint="@string/txt_email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+        <!-- Text Password -->
+
+        <!-- Password Input Field -->
+
+        <!-- Button Edit Profile -->
+
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emailInput"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="41dp"
+            android:layout_marginTop="14dp"
+            android:text="@string/text_password"
+            android:textColor="@color/dark_cyan"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="364dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/emailInput"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="44dp"
+            android:background="@drawable/border_transparent"
+            android:hint="@string/txt_password"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+        <Button
+            android:id="@+id/edit_profile"
+            android:layout_width="364dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/passwordInput"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="64dp"
+            android:background="@drawable/border_button"
+            android:gravity="center"
+            android:paddingTop="0dp"
+            android:textStyle="bold"
+            android:text="@string/txt_edit_profile"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+</ScrollView>
+

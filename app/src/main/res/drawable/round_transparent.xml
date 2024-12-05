@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Set warna background (opsional) -->
-    <solid android:color="#FF6200"/>
+    <solid android:color="@android:color/transparent"/>
 
     <!-- Atur radius jika ingin border dengan sudut melengkung (opsional) -->
-    <corners android:radius="30dp" />
+    <corners android:radius="1000dp" />
 
     <!-- Atur ketebalan dan warna border -->
-    <stroke
-        android:width="2dp"
-        /> <!-- Warna merah -->
+  <!-- Warna merah -->
 </shape>
-
-

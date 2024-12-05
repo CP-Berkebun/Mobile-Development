@@ -26,6 +26,7 @@ import com.capstone.berkebunplus.R
 import com.capstone.berkebunplus.createCustomTempFile
 import com.capstone.berkebunplus.databinding.ActivityCameraBinding
 
+@Suppress("DEPRECATION")
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
