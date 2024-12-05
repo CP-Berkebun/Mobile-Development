@@ -60,7 +60,7 @@ class ResultScanActivity : AppCompatActivity() {
         binding.btnAddToFavorite.setOnClickListener { saveResult() }
 
         binding.btnBackResult.setOnClickListener {
-            val intent = Intent(this@ResultScanActivity, HomeFragment::class.java).apply {
+            val intent = Intent(this@ResultScanActivity, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -106,7 +106,7 @@ class ResultScanActivity : AppCompatActivity() {
                         setTitle(getString(R.string.set_title_success))
                         setMessage("berhasil menyimpan hasil diagnoses")
                         setPositiveButton(getString(R.string.set_next)) { _, _ ->
-                            val intent = Intent(this@ResultScanActivity, DiagnosisFragment::class.java).apply {
+                            val intent = Intent(this@ResultScanActivity, MainActivity::class.java).apply {
                                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             }
                             startActivity(intent)

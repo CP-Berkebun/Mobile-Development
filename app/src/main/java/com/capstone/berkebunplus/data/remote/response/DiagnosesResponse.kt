@@ -34,7 +34,7 @@ data class DiagnosesItem(
 	@field:SerializedName("deskripsi")
 	val deskripsi: String? = null,
 
-	@field:SerializedName("penyakitId")
+	@field:SerializedName("penyakit_id")
 	val penyakitId: String? = null
 )
 
