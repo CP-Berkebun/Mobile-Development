@@ -9,7 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.Manifest
+import android.os.Build
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -18,34 +21,46 @@ import com.capstone.berkebunplus.R
 import com.capstone.berkebunplus.ViewModelFactory
 import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.databinding.FragmentHomeBinding
+import com.capstone.berkebunplus.reduceFileImage
 import com.capstone.berkebunplus.ui.camera.CameraActivity
 import com.capstone.berkebunplus.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
+import com.capstone.berkebunplus.ui.resultscan.ResultScanActivity
+import com.capstone.berkebunplus.uriToFile
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 
+@RequiresApi(Build.VERSION_CODES.Q)
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: HomeViewModel by viewModels {
+        ViewModelFactory.getInstance(requireContext())
+    }
 
     private var currentImageUri: Uri? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    private val REQUIRED_PERMISSION = android.Manifest.permission.CAMERA
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
+    private val requestCameraPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
-                Toast.makeText(requireContext(), "Permission request granted", Toast.LENGTH_LONG).show()
+                startCameraX()
+                Toast.makeText(requireContext(), "Izin kamera diizinkan", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Permission request denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Izin kamera ditolak", Toast.LENGTH_SHORT).show()
             }
         }
 
-    private fun allPermissionsGranted() =
-        ContextCompat.checkSelfPermission(
-            this@HomeFragment.requireContext(),
-            REQUIRED_PERMISSION
-        ) == PackageManager.PERMISSION_GRANTED
+    private val requestLocationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                getCurrentLocation()
+                Toast.makeText(requireContext(), "Izin lokasi diizinkan", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Izin lokasi ditolak", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,12 +72,45 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val factory = ViewModelFactory.getInstance()
-        val viewModel: HomeViewModel by viewModels { factory }
+        super.onViewCreated(view, savedInstanceState)
 
-        viewModel.weatherData.observe(viewLifecycleOwner) { results->
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        if (!isLocationPermissionGranted()) {
+            requestLocationPermissionLauncher.launch(REQUIRED_PERMISSION_LOCATION)
+        } else {
+            getCurrentLocation()
+        }
+
+        binding.btnScanImage.setOnClickListener {
+            if (!isCameraPermissionGranted()) {
+                requestCameraPermissionLauncher.launch(REQUIRED_PERMISSION_CAMERA)
+            } else {
+                startCameraX()
+            }
+        }
+    }
+
+    private fun getCurrentLocation() {
+        try {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                location?.let {
+                    observeWeatherData(it.latitude, it.longitude)
+                } ?: run {
+                    Toast.makeText(requireContext(), "Lokasi tidak tersedia", Toast.LENGTH_SHORT).show()
+                }
+            }.addOnFailureListener { exception ->
+                Toast.makeText(requireContext(), "Gagal mendapatkan lokasi: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: SecurityException) {
+            Toast.makeText(requireContext(), "Tidak dapat mengakses lokasi: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun observeWeatherData(latitude: Double, longitude: Double) {
+        viewModel.fetchWeather(latitude, longitude).observe(viewLifecycleOwner) { results ->
             when (results) {
-                is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE}
+                is Result.Loading -> binding.progressIndicator.visibility = View.VISIBLE
                 is Result.Success -> {
                     val weather = results.data
                     binding.progressIndicator.visibility = View.GONE
@@ -73,20 +121,16 @@ class HomeFragment : Fragment() {
                     binding.tvInfoTemperature.text = getString(R.string.result_info_temperature, weather.main.temp)
                     binding.tvInfoPressure.text = getString(R.string.result_info_pressure, weather.main.pressure)
                 }
+
                 is Result.Error -> {
                     binding.progressIndicator.visibility = View.GONE
+                    Toast.makeText(requireContext(), "Gagal memuat data cuaca: ${results.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-        viewModel.fetchWeather()
-
-        if (!allPermissionsGranted()) {
-            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
-        }
-
-        binding.btnScanImage.setOnClickListener { startCameraX() }
     }
 
+    // Memulai CameraX
     private fun startCameraX() {
         val intent = Intent(requireContext(), CameraActivity::class.java)
         launcherIntentCameraX.launch(intent)
@@ -97,7 +141,38 @@ class HomeFragment : Fragment() {
     ) {
         if (it.resultCode == CAMERAX_RESULT) {
             currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
-            showImage()
+            uploadImage()
+        }
+    }
+
+    private fun uploadImage() {
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        currentImageUri?.let { uri ->
+            val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
+            viewModel.predictImage(imageFile, userId).observe(viewLifecycleOwner) { result ->
+                when(result) {
+                    is Result.Success -> {
+                        binding.progressIndicator.visibility = View.GONE
+                        val intent = Intent(requireContext(), ResultScanActivity::class.java).apply {
+                            val response = result.data.data
+                            putExtra(ResultScanActivity.USER_ID_EXTRA, userId)
+                            putExtra(ResultScanActivity.DIAGNOSES_ID_EXTRA, response?.diagnosedId)
+                            putExtra(ResultScanActivity.IMAGE_EXTRA, response?.imageUrl)
+                            putExtra(ResultScanActivity.PLANT_EXTRA, response?.diagnoses?.plant)
+                            putExtra(ResultScanActivity.TUMBUHAN_EXTRA, response?.diagnoses?.tumbuhan)
+                            putExtra(ResultScanActivity.DISEASE_ID_EXTRA, response?.diagnoses?.penyakitId)
+                            putExtra(ResultScanActivity.DESCRIPTION_EXTRA, response?.diagnoses?.deskripsi)
+                            putExtra(ResultScanActivity.TREATMENT_EXTRA, response?.diagnoses?.treatment)
+                        }
+                        startActivity(intent)
+                    }
+                    is Result.Error -> {
+                        binding.progressIndicator.visibility = View.GONE
+                        Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                    }
+                    is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
+                }
+            }
         }
     }
 
@@ -107,8 +182,25 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun isCameraPermissionGranted() =
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            REQUIRED_PERMISSION_CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+
+    private fun isLocationPermissionGranted() =
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            REQUIRED_PERMISSION_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val REQUIRED_PERMISSION_CAMERA = Manifest.permission.CAMERA
+        private const val REQUIRED_PERMISSION_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
     }
 }

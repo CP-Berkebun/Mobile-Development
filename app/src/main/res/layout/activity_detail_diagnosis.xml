@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.resultscan.ResultScanActivity">
+    tools:context=".ui.detail.DetailDiagnosisActivity">
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressIndicator"
@@ -172,28 +172,13 @@
                     android:layout_marginBottom="5dp"
                     android:text="@string/txt_result_scan_lorem" />
 
-                <TextView
-                    style="@style/TextContent.HeadingMedium"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginVertical="10dp"
-                    android:drawablePadding="8dp"
-                    android:text="@string/txt_heading_medicine_recommendation"
-                    android:fontFamily="@font/plusjakartasans_bold"
-                    app:drawableStartCompat="@drawable/ic_hugeicons_medicine_syrup"/>
-
-                <TextView
-                    android:id="@+id/tv_medicine_recommendation"
-                    style="@style/TextContent.BodyMedium"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/txt_result_scan_lorem" />
-
                 <Button
-                    android:id="@+id/btn_add_to_favorite"
+                    android:id="@+id/btn_remove_to_favorite"
                     style="@style/CustomButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="@string/txt_button_add_to_favorite"
+                    android:text="@string/txt_button_remove_to_favorite"
                     android:fontFamily="@font/plusjakartasans_bold"/>
             </LinearLayout>
 

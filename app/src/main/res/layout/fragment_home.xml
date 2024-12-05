@@ -15,15 +15,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
+            <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/progressIndicator"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <LinearLayout
                 android:id="@+id/linearlayoutone"
@@ -321,11 +322,12 @@
 
                 <Button
                     android:id="@+id/btnScanImage"
-                    style="@style/CustomButtonStyle"
+                    style="@style/Widget.Material3.Button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:layout_marginTop="15dp"
                     android:text="@string/txt_button_scan_image"
+                    android:textSize="16sp"
                     android:fontFamily="@font/plusjakartasans_bold"/>
             </LinearLayout>
 

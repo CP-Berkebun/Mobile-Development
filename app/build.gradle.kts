@@ -31,6 +31,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         signingConfig = signingConfigs.getByName("debug")
         buildConfigField("String", "BASE_URL_WEATHER", "\"https://api.openweathermap.org/\"")
+        buildConfigField("String", "BASE_URL_PREDICT", "\"https://berkebun-capstone.et.r.appspot.com/\"")
     }
 
     buildTypes {
@@ -118,5 +119,8 @@ dependencies {
     implementation (platform("com.google.firebase:firebase-bom:32.1.1"))
 
     implementation ("androidx.core:core-ktx:1.10.1")
+    
+    // Play Service
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
 
 }

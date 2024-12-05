@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/white">
@@ -13,131 +14,148 @@
         android:indeterminate="true"
         android:visibility="gone"/>
 
+    <ImageView
+        android:id="@+id/imageViewRegis"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:alpha="0"
+        android:src="@drawable/regis"
+        tools:alpha="100"/>
+
     <!-- Description -->
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/title_daftar"
-        android:textSize="24sp"
-        android:textColor="@color/dark_cyan"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/plusjakartasans_extrabold"
+        android:text="@string/txt_title_register"
+        android:alpha="0"
+        android:textSize="30sp"
+        tools:alpha="100"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/messageTextView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txt_desc_login_one"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="5dp"
+        android:text="@string/txt_description_register_one"
+        android:alpha="0"
+        android:fontFamily="@font/plusjakartasans_semibold"
+        tools:alpha="100"/>
 
     <EditText
         android:id="@+id/fieldFullName"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/border_transparent"
+        android:layout_height="50dp"
+        android:drawableStart="@drawable/ic_person_24"
+        android:drawablePadding="8dp"
+        android:background="@drawable/border_transparent_with_stroke"
         android:layout_marginTop="50dp"
-        android:hint="@string/txt_fullname"
+        android:hint="@string/txt_full_name"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"/>
+        android:alpha="0"
+        android:paddingEnd="16dp"
+        tools:alpha="100"/>
 
-    <EditText
+    <com.capstone.berkebunplus.ui.customview.CustomEmailEditText
         android:id="@+id/fieldEmail"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/border_transparent"
+        android:layout_height="50dp"
+        android:drawableStart="@drawable/ic_email_24"
+        android:drawablePadding="8dp"
+        android:background="@drawable/border_transparent_with_stroke"
         android:layout_marginTop="20dp"
         android:hint="@string/txt_email"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"/>
+        android:alpha="0"
+        android:paddingEnd="16dp"
+        tools:alpha="100"/>
 
-    <EditText
+    <com.capstone.berkebunplus.ui.customview.CustomPasswordEditText
         android:id="@+id/fieldPassword"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/border_transparent"
+        android:layout_height="50dp"
+        android:drawableStart="@drawable/ic_password_24"
+        android:drawableEnd="@drawable/ic_eye_24"
+        android:drawablePadding="8dp"
+        android:background="@drawable/border_transparent_with_stroke"
         android:layout_marginTop="20dp"
         android:hint="@string/txt_password"
         android:inputType="textPassword"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"/>
+        android:alpha="0"
+        android:paddingEnd="16dp"
+        tools:alpha="100"/>
 
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_gravity="right"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="-35dp"
-        android:src="@drawable/ic_eye_24" />
-
-    <EditText
+    <com.capstone.berkebunplus.ui.customview.CustomPasswordEditText
         android:id="@+id/confirmPassword"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/border_transparent"
-        android:layout_marginTop="30dp"
+        android:layout_height="50dp"
+        android:drawableStart="@drawable/ic_password_24"
+        android:drawableEnd="@drawable/ic_eye_24"
+        android:drawablePadding="8dp"
+        android:background="@drawable/border_transparent_with_stroke"
+        android:layout_marginTop="20dp"
         android:hint="@string/txt_password"
         android:inputType="textPassword"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"/>
-
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_gravity="right"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="-35dp"
-        android:src="@drawable/ic_eye_24" />
+        android:alpha="0"
+        android:paddingEnd="16dp"
+        tools:alpha="100"/>
 
     <!-- Account Exists Section -->
 
     <Button
         android:id="@+id/btnRegister"
+        style="@style/Widget.Material3.Button"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/border_button"
-        android:text="@string/title_daftar"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/txt_btn_login"
+        android:backgroundTint="@color/dark_cyan"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:alpha="0"
+        android:textStyle="bold"
+        tools:alpha="100"/>
 
     <LinearLayout
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:gravity="center">
-
+        android:layout_marginTop="50dp"
+        android:alpha="0"
+        android:gravity="center"
+        tools:alpha="100">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/txt_desc_login_two"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_description_register_two"
+            android:textSize="16sp"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="10dp" />
 
         <TextView
             android:id="@+id/goLogin"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:text="@string/title_masuk"
-            android:textColor="@color/dark_cyan"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content"
+            android:text="@string/txt_btn_login"
+            android:textSize="16sp"
+            android:textColor="@color/dark_cyan" />
     </LinearLayout>
 
     <!-- Divider -->
     <LinearLayout
+        android:id="@+id/layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:alpha="0"
+        android:gravity="center"
+        tools:alpha="100">
         <View
             android:layout_width="150dp"
             android:layout_height="1dp"
@@ -148,7 +166,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_desc_login_three"
+            android:text="@string/txt_description_register_three"
             android:textSize="13sp"
             android:textColor="@color/black"
             android:layout_gravity="center"
@@ -162,36 +180,37 @@
             android:background="@color/black" />
     </LinearLayout>
 
-
     <LinearLayout
+        android:id="@+id/layout3"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:backgroundTint="@color/black"
-        android:background="@drawable/border_button">
+        android:backgroundTint="@color/grey"
+        android:alpha="0"
+        android:background="@drawable/border_button"
+        tools:alpha="100">
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:layout_marginLeft="11dp"
-            android:layout_marginRight="11dp"
+            android:layout_marginHorizontal="25dp"
             android:backgroundTint="@color/white"
             android:src="@drawable/ic_google" />
 
         <Button
             android:id="@+id/btnAuthGoogle"
-            android:layout_width="288dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:backgroundTint="@android:color/transparent"
-            android:gravity="left"
-            android:text="@string/txt_desc_google"
+            android:background="@drawable/border_transparent"
+            android:backgroundTint="@color/grey"
+            android:gravity="start|center"
+            android:text="@string/txt_btn_google"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textColor="@color/dark_cyan"
+            android:textSize="16sp"
+            android:fontFamily="@font/plusjakartasans_bold"/>
     </LinearLayout>
 
 
