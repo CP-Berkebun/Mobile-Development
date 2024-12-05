@@ -75,6 +75,18 @@ class BerkebunRepository(
         }
     }
 
+    fun deleteDiagnoses(userId: String, diagnosedId: String) = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiServicePredict.deleteDiagnoses(userId, diagnosedId)
+            Log.e("DeleteDiagnosesSuccess", "Success delete diagnoses: ${response.message}")
+            emit(Result.Success(response.status))
+        } catch (exc: Exception) {
+            Log.e("DeleteDiagnosesError", "Error delete diagnoses: ${exc.message}")
+            emit(Result.Error("${exc.message}"))
+        }
+    }
+
     suspend fun setOnboarded(onboarded: Boolean) {
         preferences.setOnboarded(onboarded)
     }

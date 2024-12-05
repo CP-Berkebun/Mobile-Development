@@ -27,6 +27,7 @@ class DiagnosesAdapter : ListAdapter<DiagnosesItem, DiagnosesAdapter.MyViewHolde
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailDiagnosisActivity::class.java).apply {
                 putExtra(IMAGE_EXTRA, getDiagnosesSaved.imageUrl)
+                putExtra(DIAGNOSES_ID_EXTRA, getDiagnosesSaved.id)
                 putExtra(TUMBUHAN_EXTRA, getDiagnosesSaved.tumbuhan)
                 putExtra(DISEASE_ID_EXTRA, getDiagnosesSaved.penyakitId)
                 putExtra(DESCRIPTION_EXTRA, getDiagnosesSaved.deskripsi)

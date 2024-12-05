@@ -1,6 +1,7 @@
 package com.capstone.berkebunplus.data.remote.retrofit
 
 import com.capstone.berkebunplus.BuildConfig
+import com.capstone.berkebunplus.data.remote.response.DeleteDiagnosesResponse
 import com.capstone.berkebunplus.data.remote.response.DiagnosesResponse
 import com.capstone.berkebunplus.data.remote.response.PredictResponse
 import com.capstone.berkebunplus.data.remote.response.SaveDiagnosesRequest
@@ -8,6 +9,7 @@ import com.capstone.berkebunplus.data.remote.response.SaveDiagnosesResponse
 import com.capstone.berkebunplus.data.remote.response.WeatherResponse
 import okhttp3.MultipartBody
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -43,4 +45,9 @@ interface ApiService {
         @Path("userId") userId: String
     ) : DiagnosesResponse
 
+    @DELETE("diagnoses/{userId}/{diagnosedId}")
+    suspend fun deleteDiagnoses(
+        @Path("userId") userId: String,
+        @Path("diagnosedId") diagnosedId: String
+    ) : DeleteDiagnosesResponse
 }

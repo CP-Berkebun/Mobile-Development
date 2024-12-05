@@ -8,4 +8,7 @@ import com.capstone.berkebunplus.data.BerkebunRepository
 class DiagnosisViewModel(private val repository: BerkebunRepository) : ViewModel() {
     fun getDiagnoses(userId: String) =
         repository.getDiagnoses(userId)
+
+    fun deleteDiagnoses(userId: String, diagnosedId: String) =
+        repository.deleteDiagnoses(userId, diagnosedId)
 }
