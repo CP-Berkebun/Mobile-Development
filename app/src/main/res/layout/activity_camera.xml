@@ -18,6 +18,39 @@
         tools:layout_editor_absoluteY="16dp">
     </androidx.camera.view.PreviewView>
 
+    <ImageButton
+        android:id="@+id/tips"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/tips_icon"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backToHome"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/remove"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="25dp"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:src="@drawable/frame_scan"
+        app:layout_constraintBottom_toBottomOf="@+id/viewFinder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <RelativeLayout
         android:id="@+id/bottomBox"
         android:layout_width="281dp"

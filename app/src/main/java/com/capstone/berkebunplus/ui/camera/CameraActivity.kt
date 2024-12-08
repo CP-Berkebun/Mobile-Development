@@ -1,5 +1,6 @@
 package com.capstone.berkebunplus.ui.camera
 
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -32,6 +33,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
+    private var popupDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,25 +49,24 @@ class CameraActivity : AppCompatActivity() {
         }
         binding.captureImage.setOnClickListener { takePhoto() }
         binding.pickImage.setOnClickListener { startGallery() }
-        // Inflate layout popup dari popup_layout.xml
-        val popupView = layoutInflater.inflate(R.layout.popup_layout, null)
-
-        // Tambahkan popup ke root layout di activity_camera.xml
-        val popupContainer = popupView.findViewById<LinearLayout>(R.id.popupContainer)
-        val btnUnderstand = popupView.findViewById<Button>(R.id.btnUnderstand)
-
-        // Tambahkan popup ke layout activity_camera.xml
-        val rootLayout = binding.root // root layout activity_camera.xml
-        (rootLayout as ViewGroup).addView(popupView)
-
-        // Menampilkan popup
-        showPopup(popupContainer)
+        binding.backToHome.setOnClickListener { finish() }
+        binding.tips.setOnClickListener { showPopupDialog() }
+        showPopupDialog()
+//        // Inflate layout popup dari popup_layout.xml
+//        val popupView = layoutInflater.inflate(R.layout.popup_layout, null)
+//
+//        // Tambahkan popup ke root layout di activity_camera.xml
+//        val popupContainer = popupView.findViewById<LinearLayout>(R.id.popupContainer)
+//        val btnUnderstand = popupView.findViewById<Button>(R.id.btnUnderstand)
+//
+//        // Tambahkan popup ke layout activity_camera.xml
+//        val rootLayout = binding.root // root layout activity_camera.xml
+//        (rootLayout as ViewGroup).addView(popupView)
+//
+//        // Menampilkan popup
+//        showPopup(popupContainer)
 
         // Menambahkan listener untuk tombol Understand
-        btnUnderstand.setOnClickListener {
-            // Tutup popup
-            hidePopup(popupContainer)
-        }
     }
 
     public override fun onResume() {
@@ -210,15 +211,39 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
-    // Fungsi untuk menampilkan popup
-    private fun showPopup(popupContainer: LinearLayout) {
-        popupContainer.visibility = View.VISIBLE
+    private fun showPopupDialog() {
+        if (popupDialog == null) {
+            popupDialog = Dialog(this).apply {
+                setContentView(R.layout.popup_layout)
+                setCancelable(true)
+            }
+        }
+        popupDialog?.show()
+
+        val understand = popupDialog!!.findViewById<Button>(R.id.btnUnderstand)
+        understand.setOnClickListener {
+            hidePopupDialog()
+        }
     }
 
-    // Fungsi untuk menyembunyikan popup
-    private fun hidePopup(popupContainer: LinearLayout) {
-        popupContainer.visibility = View.GONE
+    private fun hidePopupDialog() {
+        popupDialog?.let {
+            if (it.isShowing) {
+                it.dismiss() // Pastikan dialog ditutup
+            }
+        }
+        popupDialog = null
     }
+
+//    // Fungsi untuk menampilkan popup
+//    private fun showPopup(popupContainer: LinearLayout) {
+//        popupContainer.visibility = View.VISIBLE
+//    }
+//
+//    // Fungsi untuk menyembunyikan popup
+//    private fun hidePopup(popupContainer: LinearLayout) {
+//        popupContainer.visibility = View.GONE
+//    }
 
     override fun onStart() {
         super.onStart()
