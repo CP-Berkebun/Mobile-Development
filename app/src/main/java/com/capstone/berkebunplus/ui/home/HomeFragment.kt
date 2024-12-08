@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,6 @@ import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.databinding.FragmentHomeBinding
 import com.capstone.berkebunplus.reduceFileImage
 import com.capstone.berkebunplus.ui.camera.CameraActivity
-import com.capstone.berkebunplus.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
 import com.capstone.berkebunplus.ui.resultscan.ResultScanActivity
 import com.capstone.berkebunplus.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -139,11 +137,21 @@ class HomeFragment : Fragment() {
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if (it.resultCode == CAMERAX_RESULT) {
-            currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
-            uploadImage()
+        if (it.resultCode == CameraActivity.RESULT_OK) {
+            val data = it.data
+            val galleryImageUri = data?.getStringExtra(CameraActivity.EXTRA_GALLERY_IMAGE)?.toUri()
+            val cameraImageUri = data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
+
+            currentImageUri = galleryImageUri ?: cameraImageUri
+
+            if (currentImageUri != null) {
+                uploadImage()
+            } else {
+                Toast.makeText(requireContext(), "Tidak ada gambar yang dipilih", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
 
     private fun uploadImage() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
@@ -173,12 +181,6 @@ class HomeFragment : Fragment() {
                     is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
                 }
             }
-        }
-    }
-
-    private fun showImage() {
-        currentImageUri?.let {
-            Log.d("Image URI", "showImage: $it")
         }
     }
 

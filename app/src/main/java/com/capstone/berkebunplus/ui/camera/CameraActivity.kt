@@ -1,6 +1,7 @@
 package com.capstone.berkebunplus.ui.camera
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,15 +13,15 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.capstone.berkebunplus.R
 import com.capstone.berkebunplus.createCustomTempFile
@@ -45,9 +46,7 @@ class CameraActivity : AppCompatActivity() {
             startCamera()
         }
         binding.captureImage.setOnClickListener { takePhoto() }
-        binding.pickImage.setOnClickListener {
-            pickImageFromGallery()
-        }
+        binding.pickImage.setOnClickListener { startGallery() }
         // Inflate layout popup dari popup_layout.xml
         val popupView = layoutInflater.inflate(R.layout.popup_layout, null)
 
@@ -138,26 +137,46 @@ class CameraActivity : AppCompatActivity() {
         )
     }
 
-    private fun pickImageFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*" // Menampilkan hanya file gambar
-        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    private fun startGallery() {
+        launcherGallery.launch(PickVisualMediaRequest(
+            ActivityResultContracts.PickVisualMedia.ImageOnly
+        ))
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            val selectedImageUri = data?.data
-            if (selectedImageUri != null) {
-                // Menampilkan gambar yang dipilih di imageViewGallery
-                binding.pickImage.setImageURI(selectedImageUri)
-                binding.pickImage.visibility = View.VISIBLE
-                binding.viewFinder.visibility = View.GONE
-            } else {
-                Toast.makeText(this, "Gagal memilih gambar.", Toast.LENGTH_SHORT).show()
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            val intent = Intent().apply {
+                putExtra(EXTRA_GALLERY_IMAGE, uri.toString())
             }
+            setResult(GALLERY_IMAGE_RESULT, intent)
+            finish()
+        } else {
+            Toast.makeText(this, "Gagal memilih gambar.", Toast.LENGTH_SHORT).show()
         }
     }
+
+//    private fun pickImageFromGallery() {
+//        val intent = Intent(Intent.ACTION_PICK)
+//        intent.type = "image/*" // Menampilkan hanya file gambar
+//        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+//    }
+//
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
+//            val selectedImageUri = data?.data
+//            if (selectedImageUri != null) {
+//                // Menampilkan gambar yang dipilih di imageViewGallery
+//                binding.pickImage.setImageURI(selectedImageUri)
+//                binding.pickImage.visibility = View.VISIBLE
+//                binding.viewFinder.visibility = View.GONE
+//            } else {
+//                Toast.makeText(this, "Gagal memilih gambar.", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
 
     private fun hideSystemUI() {
         @Suppress("DEPRECATION")
@@ -214,7 +233,10 @@ class CameraActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "CameraActivity"
         const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
+        const val EXTRA_GALLERY_IMAGE = "Gallery Image"
         const val CAMERAX_RESULT = 200
+        const val GALLERY_IMAGE_RESULT = 200
+        const val RESULT_OK = 200
         private const val PICK_IMAGE_REQUEST = 1 // Tambahkan konstanta untuk request code
     }
 }
