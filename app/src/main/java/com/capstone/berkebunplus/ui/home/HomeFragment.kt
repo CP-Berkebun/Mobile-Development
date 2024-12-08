@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.Manifest
+import android.app.Dialog
 import android.os.Build
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
         ViewModelFactory.getInstance(requireContext())
     }
 
+    private var loadingDialog: Dialog? = null
     private var currentImageUri: Uri? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -160,7 +162,8 @@ class HomeFragment : Fragment() {
             viewModel.predictImage(imageFile, userId).observe(viewLifecycleOwner) { result ->
                 when(result) {
                     is Result.Success -> {
-                        binding.progressIndicator.visibility = View.GONE
+                        hideLoadingDialog()
+//                        binding.progressIndicator.visibility = View.GONE
                         val intent = Intent(requireContext(), ResultScanActivity::class.java).apply {
                             val response = result.data.data
                             putExtra(ResultScanActivity.USER_ID_EXTRA, userId)
@@ -175,14 +178,38 @@ class HomeFragment : Fragment() {
                         startActivity(intent)
                     }
                     is Result.Error -> {
-                        binding.progressIndicator.visibility = View.GONE
+                        hideLoadingDialog()
+//                        binding.progressIndicator.visibility = View.GONE
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
                     }
-                    is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
+                    is Result.Loading -> {
+                        showLoadingDialog()
+//                        binding.progressIndicator.visibility = View.VISIBLE
+                    }
                 }
             }
         }
     }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(requireContext()).apply {
+                setContentView(R.layout.custom_loading_dialog)
+                setCancelable(false)
+            }
+        }
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog() {
+        loadingDialog?.let {
+            if (it.isShowing) {
+                it.dismiss() // Pastikan dialog ditutup
+            }
+        }
+        loadingDialog = null
+    }
+
 
     private fun isCameraPermissionGranted() =
         ContextCompat.checkSelfPermission(

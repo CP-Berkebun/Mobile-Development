@@ -125,6 +125,7 @@
     <string name="txt_result_plant_name">Tumbuhan</string>
     <string name="txt_result_scan_diseaseId">Hasil Diagnosis</string>
     <string name="txt_button_remove_to_favorite">Hapus dari Daftar Favorite</string>
+    <string name="loading">Memprediksi\nGambar...</string>
 
 
 </resources>
