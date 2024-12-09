@@ -138,21 +138,32 @@ class CameraActivity : AppCompatActivity() {
         )
     }
 
+    // Fungsi untuk memilih gambar dari galeri
     private fun pickImageFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*" // Menampilkan hanya file gambar
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
+
+
     }
 
+    // Mengambil hasil dari pemilihan gambar
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
             val selectedImageUri = data?.data
             if (selectedImageUri != null) {
-                // Menampilkan gambar yang dipilih di imageViewGallery
+                // Menampilkan gambar yang dipilih di ImageView
                 binding.pickImage.setImageURI(selectedImageUri)
                 binding.pickImage.visibility = View.VISIBLE
                 binding.viewFinder.visibility = View.GONE
+
+                // Mengembalikan URI gambar ke activity yang memanggil
+                val resultIntent = Intent()
+                resultIntent.putExtra(EXTRA_CAMERAX_IMAGE, selectedImageUri.toString()) // Menyimpan URI gambar dalam bentuk String
+                setResult(CAMERAX_RESULT, resultIntent)
+                finish() // Menutup activity dan kembali ke HomeFragment atau activity pemanggil
             } else {
                 Toast.makeText(this, "Gagal memilih gambar.", Toast.LENGTH_SHORT).show()
             }
@@ -213,8 +224,11 @@ class CameraActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "CameraActivity"
+        private const val RESULT_OK = 1
         const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
         const val CAMERAX_RESULT = 200
+        const val GALLERY_RESULT = 100// You can set any unique value
+        const val EXTRA_PICK_IMAGE = "extra_pick_image"
         private const val PICK_IMAGE_REQUEST = 1 // Tambahkan konstanta untuk request code
     }
 }

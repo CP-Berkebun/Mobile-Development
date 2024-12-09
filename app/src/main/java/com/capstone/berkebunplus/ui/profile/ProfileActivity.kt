@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 
+@Suppress("DEPRECATION")
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
@@ -25,6 +26,15 @@ class ProfileActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         loadUserProfile()
+
+        // Disable email input field
+        binding.emailInput.isEnabled = false
+        // Optional: Make email field read-only
+        binding.emailInput.keyListener = null
+
+        binding.btnBackProfile.setOnClickListener{
+
+        }
 
         // Tombol Simpan Profil
         binding.editProfile.setOnClickListener {

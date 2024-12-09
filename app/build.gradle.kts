@@ -115,11 +115,13 @@ dependencies {
     // Dependensi Firebase SDK
     implementation ("com.google.firebase:firebase-analytics-ktx")
 
-    // Jangan lupa untuk menambahkan plugin Firebase di bawah
-    implementation (platform("com.google.firebase:firebase-bom:32.1.1"))
 
     implementation ("androidx.core:core-ktx:1.10.1")
-    
+
+    implementation ("com.google.firebase:firebase-auth:22.1.0")
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
+
     // Play Service
     implementation ("com.google.android.gms:play-services-location:21.0.1")
 

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.Manifest
+import android.app.Activity
 import android.os.Build
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -24,6 +25,7 @@ import com.capstone.berkebunplus.databinding.FragmentHomeBinding
 import com.capstone.berkebunplus.reduceFileImage
 import com.capstone.berkebunplus.ui.camera.CameraActivity
 import com.capstone.berkebunplus.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
+import com.capstone.berkebunplus.ui.camera.CameraActivity.Companion.GALLERY_RESULT
 import com.capstone.berkebunplus.ui.resultscan.ResultScanActivity
 import com.capstone.berkebunplus.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -139,9 +141,18 @@ class HomeFragment : Fragment() {
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if (it.resultCode == CAMERAX_RESULT) {
-            currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
-            uploadImage()
+        if (it.resultCode == Activity.RESULT_OK) {
+            val data = it.data
+            val galleryImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_PICK_IMAGE)?.toUri()
+            val cameraImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
+
+           currentImageUri = galleryImageUri ?: cameraImageUri
+
+            if (currentImageUri != null) {
+                uploadImage()
+            } else {
+                Toast.makeText(requireContext(), "Tidak ada gambar yang dipilih", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -200,6 +211,7 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
+        private const val RESULT_OK = 1
         private const val REQUIRED_PERMISSION_CAMERA = Manifest.permission.CAMERA
         private const val REQUIRED_PERMISSION_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
     }

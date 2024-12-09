@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="42dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="310dp"
             android:text="@string/text_name"
             android:textColor="@color/dark_cyan"
@@ -64,7 +64,7 @@
             android:layout_below="@+id/avatarImage"
             android:layout_marginStart="24dp"
             android:layout_marginTop="146dp"
-            android:background="@drawable/border_transparent"
+            android:background="@drawable/border_edit_text"
             android:hint="@string/txt_fullname"
             android:inputType="textPersonName"
             android:paddingStart="16dp"
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/nameInput"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="39dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="11dp"
             android:text="@string/text_email"
             android:textColor="@color/dark_cyan"
@@ -92,31 +92,27 @@
             android:layout_below="@+id/nameInput"
             android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/border_transparent"
+            android:background="@drawable/border_edit_text"
             android:hint="@string/txt_email"
             android:inputType="textEmailAddress"
             android:paddingStart="16dp"
             android:paddingEnd="16dp" />
 
         <!-- Text Password -->
-
-        <!-- Password Input Field -->
-
-        <!-- Button Edit Profile -->
-
         <TextView
             android:id="@+id/passwordLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/emailInput"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="41dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="14dp"
             android:text="@string/text_password"
             android:textColor="@color/dark_cyan"
             android:textSize="16sp"
             android:textStyle="bold" />
-
+        
+        <!-- Password Input Field -->
         <EditText
             android:id="@+id/passwordInput"
             android:layout_width="364dp"
@@ -124,7 +120,7 @@
             android:layout_below="@+id/emailInput"
             android:layout_marginStart="24dp"
             android:layout_marginTop="44dp"
-            android:background="@drawable/border_transparent"
+            android:background="@drawable/border_edit_text"
             android:hint="@string/txt_password"
             android:inputType="textPassword"
             android:paddingStart="16dp"
@@ -136,13 +132,27 @@
             android:layout_height="48dp"
             android:layout_below="@+id/passwordInput"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="14dp"
             android:background="@drawable/border_button"
             android:gravity="center"
             android:paddingTop="0dp"
-            android:textStyle="bold"
             android:text="@string/txt_edit_profile"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_back_profile"
+            android:layout_width="364dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/passwordInput"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="76dp"
+            android:background="@drawable/border_button"
+            android:gravity="center"
+            android:paddingTop="0dp"
+            android:text="@string/btn_back_profile"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 </ScrollView>

@@ -33,6 +33,7 @@
     <string name="txt_desc_facebook">Facebook</string>
     <string name="txt_edit_profile_image">Ganti</string>
     <string name="txt_edit_profile">Simpan</string>
+    <string name="btn_back_profile">Kembali</string>
     <string name="btn_logout">Keluar</string>
 
     <string name="txt_yourName">John Doe</string>
@@ -51,6 +52,8 @@
 
     <string name="menu_profile">Kembali</string>
 
+    <string name="loading">Memprediksi Gambar...</string>
+    <string name="txt_fullname">Nama anda kosong</string>
 
     <string name="txt_btn_understand">Mengerti</string>
     <string name="default_web_client_id">453542349748-m6skk77pqtbsuajsvpc4p9ncak55hoj0.apps.googleusercontent.com</string>
@@ -125,6 +128,12 @@
     <string name="txt_result_plant_name">Tumbuhan</string>
     <string name="txt_result_scan_diseaseId">Hasil Diagnosis</string>
     <string name="txt_button_remove_to_favorite">Hapus dari Daftar Favorite</string>
+    <string name="set_message_success_login">Berhasil masuk ke akun anda</string>
+    <string name="set_message_success_login_google">Berhasil masuk dengan akun Google!</string>
+    <string name="set_title_error">Gagal:(</string>
+    <string name="set_message_error_login_google">Gagal masuk dengan akun Google!</string>
+    <string name="error">Coba lagi!</string>
+    <string name="set_message_success_signUp">Selamat! Anda berhasil membuat akun!</string>
 
 
 </resources>
