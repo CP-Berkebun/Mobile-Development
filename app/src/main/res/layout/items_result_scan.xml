@@ -23,17 +23,6 @@
             tools:src="@tools:sample/backgrounds/scenic"
             android:contentDescription="@string/codes_result_image_scan" />
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:padding="5dp"
-            android:src="@drawable/ic_bookmark"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/savedItems" />
-
         <TextView
             android:id="@+id/tv_diagnosis_plant_name_item"
             style="@style/TextContent.BodySmall"

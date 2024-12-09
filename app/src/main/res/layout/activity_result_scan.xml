@@ -14,7 +14,6 @@
         android:indeterminate="true"
         android:visibility="gone"
         android:layout_gravity="center"
-        android:background="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -133,12 +132,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:background="@drawable/bg_stroke"
                 android:layout_marginVertical="20dp"
+                android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -156,6 +156,16 @@
                     style="@style/TextContent.BodyMedium"
                     android:layout_marginBottom="5dp"
                     android:text="@string/txt_result_scan_lorem" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_stroke"
+                android:padding="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     style="@style/TextContent.HeadingMedium"
@@ -171,31 +181,17 @@
                     style="@style/TextContent.BodyMedium"
                     android:layout_marginBottom="5dp"
                     android:text="@string/txt_result_scan_lorem" />
-
-                <TextView
-                    style="@style/TextContent.HeadingMedium"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginVertical="10dp"
-                    android:drawablePadding="8dp"
-                    android:text="@string/txt_heading_medicine_recommendation"
-                    android:fontFamily="@font/plusjakartasans_bold"
-                    app:drawableStartCompat="@drawable/ic_hugeicons_medicine_syrup"/>
-
-                <TextView
-                    android:id="@+id/tv_medicine_recommendation"
-                    style="@style/TextContent.BodyMedium"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/txt_result_scan_lorem" />
-
-                <Button
-                    android:id="@+id/btn_add_to_favorite"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/txt_button_add_to_favorite"
-                    android:fontFamily="@font/plusjakartasans_bold"/>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_add_to_favorite"
+                style="@style/CustomButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/txt_button_add_to_favorite"
+                android:fontFamily="@font/plusjakartasans_bold"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

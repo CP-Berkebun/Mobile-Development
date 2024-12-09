@@ -39,9 +39,7 @@ class DiagnosisFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            showDiagnosesData()
-        }, 1000)
+        showDiagnosesData()
     }
 
     private fun showDiagnosesData() {
