@@ -33,6 +33,7 @@
     <string name="txt_desc_facebook">Facebook</string>
     <string name="txt_edit_profile_image">Ganti</string>
     <string name="txt_edit_profile">Simpan</string>
+    <string name="btn_back_profile">Kembali</string>
     <string name="btn_logout">Keluar</string>
 
     <string name="txt_yourName">John Doe</string>
@@ -51,6 +52,8 @@
 
     <string name="menu_profile">Kembali</string>
 
+    <string name="loading">Memprediksi Gambar...</string>
+    <string name="txt_fullname">Nama anda kosong</string>
 
     <string name="txt_btn_understand">Mengerti</string>
     <string name="default_web_client_id">453542349748-m6skk77pqtbsuajsvpc4p9ncak55hoj0.apps.googleusercontent.com</string>

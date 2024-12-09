@@ -27,12 +27,19 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.viewModels
+import com.capstone.berkebunplus.ViewModelFactory
+import com.capstone.berkebunplus.data.Result
+import com.capstone.berkebunplus.ui.auth.AuthViewModelFactory
+import com.capstone.berkebunplus.ui.home.HomeViewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
-    private val loginViewModel: LoginViewModel by viewModels()
+    private val viewModel: LoginViewModel by viewModels {
+        AuthViewModelFactory.getInstance()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,45 +47,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupView()
+        setupAction()
+        setupGoogleSignIn()
         playAnimation()
-        
-        // Set up Google Sign-In options
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id)) // Correct resource ID
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        // Navigate to RegisterActivity
-        binding.goRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btnAuthGoogle.setOnClickListener {
-            binding.progressIndicator.visibility = View.VISIBLE
-            signInGoogle()
-        }
-
-        binding.btnLogin.setOnClickListener {
-            val email = binding.email.text.toString()
-            val pass = binding.password.text.toString()
-            binding.progressIndicator.visibility = View.VISIBLE
-            if (email.isNotEmpty() && pass.isNotEmpty()) {
-                loginViewModel.loginWithEmail(email, pass)
-            } else {
-                binding.progressIndicator.visibility = View.GONE
-                Toast.makeText(this, "Kolom tidak boleh kosong!", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        // Handle login with Google
-        binding.btnAuthGoogle.setOnClickListener {
-            signInGoogle()
-        }
-
-        observeViewModel()
     }
 
     private fun setupView() {
@@ -92,6 +63,40 @@ class LoginActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+    }
+
+    private fun setupAction() {
+        binding.goRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnLogin.setOnClickListener {
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
+
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                signIn(email, password)
+//                loginViewModel.loginWithEmail(email, password)
+//                binding.progressIndicator.visibility = View.VISIBLE
+            } else {
+                Toast.makeText(this, "Kolom tidak boleh kosong!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.btnAuthGoogle.setOnClickListener {
+            signInGoogle()
+        }
+    }
+
+    private fun setupGoogleSignIn() {
+        // Set up Google Sign-In options
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id)) // Correct resource ID
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
     private fun signInGoogle() {
@@ -109,10 +114,39 @@ class LoginActivity : AppCompatActivity() {
     private fun handleResults(task: Task<GoogleSignInAccount>) {
         if (task.isSuccessful) {
             val account: GoogleSignInAccount? = task.result
-            if (account != null) {
-                val idToken = account.idToken
-                if (idToken != null) {
-                    loginViewModel.loginWithGoogle(idToken)
+            account?.idToken?.let { idToken ->
+                viewModel.loginWithGoogle(idToken).observe(this) { result ->
+                    when(result) {
+                        is Result.Success -> {
+                            binding.progressIndicator.visibility = View.GONE
+                            AlertDialog.Builder(this).apply {
+                                setTitle(getString(R.string.set_title_success))
+                                setMessage(getString(R.string.set_message_success_login_google))
+                                setPositiveButton(getString(R.string.txt_btn_login)) { _, _ ->
+                                    val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
+                                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    }
+                                    startActivity(intent)
+                                    finish()
+                                }
+                                create()
+                                show()
+                            }
+                        }
+                        is Result.Error -> {
+                            binding.progressIndicator.visibility = View.GONE
+                            AlertDialog.Builder(this).apply {
+                                setTitle(getString(R.string.set_title_error))
+                                setMessage(result.message)
+                                setPositiveButton(getString(R.string.error)) { _, _ ->
+                                }
+                                create()
+                                show()
+                            }
+                            Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                        }
+                        is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
+                    }
                 }
             }
         } else {
@@ -120,56 +154,43 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeViewModel() {
-        loginViewModel.loginResult.observe(this) { result ->
-            binding.progressIndicator.visibility = View.GONE
-            result.onSuccess {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }.onFailure { exception ->
-                Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
-            }
-        }
+    private fun signIn(email: String, password: String) {
+        viewModel.loginWithEmail(email, password).observe(this) { result ->
+            when(result) {
+                is Result.Success -> {
+                    binding.progressIndicator.visibility = View.GONE
+                    AlertDialog.Builder(this).apply {
+                        setTitle(getString(R.string.set_title_success))
+                        setMessage(getString(R.string.set_message_success_login))
+                        setPositiveButton(getString(R.string.txt_btn_login)) { _, _ ->
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            }
+                            startActivity(intent)
+                            finish()
+                        }
+                        create()
+                        show()
+                    }
+                }
+                is Result.Error -> {
+                    binding.progressIndicator.visibility = View.GONE
+                    AlertDialog.Builder(this).apply {
+                        setTitle(getString(R.string.set_title_error))
+                        setMessage(result.message)
+                        setPositiveButton(getString(R.string.error)) { _, _ ->
+                        }
+                        create()
+                        show()
+                    }
 
-        loginViewModel.googleSignInResult.observe(this) { result ->
-            binding.progressIndicator.visibility = View.GONE
-            result.onSuccess {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }.onFailure { exception ->
-                Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
-// =======
-//     private fun updateUI(account: GoogleSignInAccount) {
-//         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-//         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
-//             if (task.isSuccessful) {
-//                 showSuccessDialog(account)
-//             } else {
-//                 Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
-// >>>>>>> main
+//                    Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                }
+                is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
             }
         }
     }
 
-//     private fun showSuccessDialog(account: GoogleSignInAccount) {
-//         AlertDialog.Builder(this).apply {
-//             setTitle(getString(R.string.set_title_success))
-//             setMessage(getString(R.string.set_message_success))
-//             setPositiveButton(getString(R.string.set_next)) { _, _ ->
-//                 val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
-//                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                     putExtra("email", account.email)
-//                     putExtra("name", account.displayName)
-//                 }
-//                 startActivity(intent)
-//                 finish()
-//             }
-//             create()
-//             show()
-//         }
-//     }
 
     private fun playAnimation() {
         val imageStart = ObjectAnimator.ofFloat(binding.imageViewLogin, View.ALPHA, 1f).setDuration(300)

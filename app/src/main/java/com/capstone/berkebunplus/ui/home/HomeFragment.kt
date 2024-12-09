@@ -139,6 +139,7 @@ class HomeFragment : Fragment() {
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
+
         if (it.resultCode == CameraActivity.RESULT_OK) {
             val data = it.data
             val galleryImageUri = data?.getStringExtra(CameraActivity.EXTRA_GALLERY_IMAGE)?.toUri()
@@ -163,7 +164,6 @@ class HomeFragment : Fragment() {
                 when(result) {
                     is Result.Success -> {
                         hideLoadingDialog()
-//                        binding.progressIndicator.visibility = View.GONE
                         val intent = Intent(requireContext(), ResultScanActivity::class.java).apply {
                             val response = result.data.data
                             putExtra(ResultScanActivity.USER_ID_EXTRA, userId)
@@ -179,12 +179,10 @@ class HomeFragment : Fragment() {
                     }
                     is Result.Error -> {
                         hideLoadingDialog()
-//                        binding.progressIndicator.visibility = View.GONE
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
                     }
                     is Result.Loading -> {
                         showLoadingDialog()
-//                        binding.progressIndicator.visibility = View.VISIBLE
                     }
                 }
             }
@@ -204,7 +202,7 @@ class HomeFragment : Fragment() {
     private fun hideLoadingDialog() {
         loadingDialog?.let {
             if (it.isShowing) {
-                it.dismiss() // Pastikan dialog ditutup
+                it.dismiss()
             }
         }
         loadingDialog = null
@@ -229,6 +227,7 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
+        private const val RESULT_OK = 1
         private const val REQUIRED_PERMISSION_CAMERA = Manifest.permission.CAMERA
         private const val REQUIRED_PERMISSION_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
     }

@@ -52,21 +52,6 @@ class CameraActivity : AppCompatActivity() {
         binding.backToHome.setOnClickListener { finish() }
         binding.tips.setOnClickListener { showPopupDialog() }
         showPopupDialog()
-//        // Inflate layout popup dari popup_layout.xml
-//        val popupView = layoutInflater.inflate(R.layout.popup_layout, null)
-//
-//        // Tambahkan popup ke root layout di activity_camera.xml
-//        val popupContainer = popupView.findViewById<LinearLayout>(R.id.popupContainer)
-//        val btnUnderstand = popupView.findViewById<Button>(R.id.btnUnderstand)
-//
-//        // Tambahkan popup ke layout activity_camera.xml
-//        val rootLayout = binding.root // root layout activity_camera.xml
-//        (rootLayout as ViewGroup).addView(popupView)
-//
-//        // Menampilkan popup
-//        showPopup(popupContainer)
-
-        // Menambahkan listener untuk tombol Understand
     }
 
     public override fun onResume() {
@@ -158,26 +143,6 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
-//    private fun pickImageFromGallery() {
-//        val intent = Intent(Intent.ACTION_PICK)
-//        intent.type = "image/*" // Menampilkan hanya file gambar
-//        startActivityForResult(intent, PICK_IMAGE_REQUEST)
-//    }
-//
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
-//            val selectedImageUri = data?.data
-//            if (selectedImageUri != null) {
-//                // Menampilkan gambar yang dipilih di imageViewGallery
-//                binding.pickImage.setImageURI(selectedImageUri)
-//                binding.pickImage.visibility = View.VISIBLE
-//                binding.viewFinder.visibility = View.GONE
-//            } else {
-//                Toast.makeText(this, "Gagal memilih gambar.", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
 
     private fun hideSystemUI() {
         @Suppress("DEPRECATION")
@@ -235,16 +200,6 @@ class CameraActivity : AppCompatActivity() {
         popupDialog = null
     }
 
-//    // Fungsi untuk menampilkan popup
-//    private fun showPopup(popupContainer: LinearLayout) {
-//        popupContainer.visibility = View.VISIBLE
-//    }
-//
-//    // Fungsi untuk menyembunyikan popup
-//    private fun hidePopup(popupContainer: LinearLayout) {
-//        popupContainer.visibility = View.GONE
-//    }
-
     override fun onStart() {
         super.onStart()
         orientationEventListener.enable()
@@ -262,6 +217,5 @@ class CameraActivity : AppCompatActivity() {
         const val CAMERAX_RESULT = 200
         const val GALLERY_IMAGE_RESULT = 200
         const val RESULT_OK = 200
-        private const val PICK_IMAGE_REQUEST = 1 // Tambahkan konstanta untuk request code
     }
 }
