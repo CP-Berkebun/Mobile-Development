@@ -65,7 +65,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="146dp"
             android:background="@drawable/border_transparent"
-            android:hint="@string/txt_fullname"
+            android:hint="@string/txt_full_name"
             android:inputType="textPersonName"
             android:paddingStart="16dp"
             android:paddingEnd="16dp" />

@@ -4,12 +4,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.Manifest
+import android.app.Dialog
 import android.os.Build
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -23,7 +23,6 @@ import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.databinding.FragmentHomeBinding
 import com.capstone.berkebunplus.reduceFileImage
 import com.capstone.berkebunplus.ui.camera.CameraActivity
-import com.capstone.berkebunplus.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
 import com.capstone.berkebunplus.ui.resultscan.ResultScanActivity
 import com.capstone.berkebunplus.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -39,6 +38,7 @@ class HomeFragment : Fragment() {
         ViewModelFactory.getInstance(requireContext())
     }
 
+    private var loadingDialog: Dialog? = null
     private var currentImageUri: Uri? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -139,11 +139,21 @@ class HomeFragment : Fragment() {
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if (it.resultCode == CAMERAX_RESULT) {
-            currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
-            uploadImage()
+        if (it.resultCode == CameraActivity.RESULT_OK) {
+            val data = it.data
+            val galleryImageUri = data?.getStringExtra(CameraActivity.EXTRA_GALLERY_IMAGE)?.toUri()
+            val cameraImageUri = data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
+
+            currentImageUri = galleryImageUri ?: cameraImageUri
+
+            if (currentImageUri != null) {
+                uploadImage()
+            } else {
+                Toast.makeText(requireContext(), "Tidak ada gambar yang dipilih", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
 
     private fun uploadImage() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
@@ -152,7 +162,8 @@ class HomeFragment : Fragment() {
             viewModel.predictImage(imageFile, userId).observe(viewLifecycleOwner) { result ->
                 when(result) {
                     is Result.Success -> {
-                        binding.progressIndicator.visibility = View.GONE
+                        hideLoadingDialog()
+//                        binding.progressIndicator.visibility = View.GONE
                         val intent = Intent(requireContext(), ResultScanActivity::class.java).apply {
                             val response = result.data.data
                             putExtra(ResultScanActivity.USER_ID_EXTRA, userId)
@@ -167,20 +178,38 @@ class HomeFragment : Fragment() {
                         startActivity(intent)
                     }
                     is Result.Error -> {
-                        binding.progressIndicator.visibility = View.GONE
+                        hideLoadingDialog()
+//                        binding.progressIndicator.visibility = View.GONE
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
                     }
-                    is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
+                    is Result.Loading -> {
+                        showLoadingDialog()
+//                        binding.progressIndicator.visibility = View.VISIBLE
+                    }
                 }
             }
         }
     }
 
-    private fun showImage() {
-        currentImageUri?.let {
-            Log.d("Image URI", "showImage: $it")
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(requireContext()).apply {
+                setContentView(R.layout.custom_loading_dialog)
+                setCancelable(false)
+            }
         }
+        loadingDialog?.show()
     }
+
+    private fun hideLoadingDialog() {
+        loadingDialog?.let {
+            if (it.isShowing) {
+                it.dismiss() // Pastikan dialog ditutup
+            }
+        }
+        loadingDialog = null
+    }
+
 
     private fun isCameraPermissionGranted() =
         ContextCompat.checkSelfPermission(

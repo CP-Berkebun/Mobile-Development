@@ -55,25 +55,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:contentDescription="@string/codes_arrow_back_result_activity" />
 
-            <TextView
-                style="@style/TextContent.TitleMedium"
-                android:text="@string/txt_result_plant_name"
-                android:fontFamily="@font/plusjakartasans_lightitalic"
-                android:layout_marginBottom="56dp"
-                android:layout_marginStart="20dp"
-                android:layout_gravity="start|bottom"/>
-
-            <TextView
-                android:id="@+id/tv_result_plant_name"
-                style="@style/TextContent.TitleLarge"
-                android:text="@string/txt_result_scan_name"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/plusjakartasans_bold"
-                android:layout_marginBottom="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_gravity="start|bottom"/>
-
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -87,48 +68,113 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_detail_diagnosis"
+                android:layout_marginBottom="25dp"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/plusjakartasans_bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_stroke"
+                android:padding="25dp"
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:layout_height="wrap_content">
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/textViewDetailDiagnosis"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/plusjakartasans_bold"-->
+<!--                        android:text="Detail Hasil Diagnosis"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="18sp"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <View-->
+<!--                        android:id="@+id/view_line"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="2dp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:background="@android:color/darker_gray"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/textViewDetailDiagnosis"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/textViewDetailDiagnosis" />-->
 
                     <ImageView
                         android:id="@+id/imageView"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_healthcare_outline"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:contentDescription="@string/codes_symptoms"
+                        android:src="@drawable/ic_detail_plant"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:contentDescription="@string/codes_symptoms" />
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        style="@style/TextContent.TitleLarge"
-                        android:layout_marginStart="20dp"
-                        android:text="@string/txt_result_scan_diseaseId"
-                        android:fontFamily="@font/plusjakartasans_bold"
-                        app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_result_diagnosis_name"
-                        android:layout_width="0dp"
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/txt_result_scan_list_symptoms"
+                        android:layout_marginStart="20dp"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:text="@string/txt_detail_plant_name"
+                        android:fontFamily="@font/plusjakartasans_bold"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
+                        app:layout_constraintTop_toTopOf="@id/imageView" />
+
+                    <TextView
+                        android:id="@+id/tv_result_plant_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_result_scan_name"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/plusjakartasans_extrabold"
                         app:layout_constraintStart_toStartOf="@+id/textView2"
-                        app:layout_constraintTop_toBottomOf="@+id/textView2"
-                        android:fontFamily="@font/plusjakartasans_bold"/>
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/ic_detail_diagnosis"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/imageView"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+                    <TextView
+                        android:id="@+id/textViewDiagnosisResult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:textSize="16sp"
+                        android:text="@string/txt_detail_diagnosis_name"
+                        android:fontFamily="@font/plusjakartasans_bold"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
+                        app:layout_constraintTop_toTopOf="@id/imageView2" />
+
+                    <TextView
+                        android:id="@+id/tv_result_diagnosis_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/plusjakartasans_extrabold"
+                        android:text="@string/txt_result_scan_list_symptoms"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@+id/textViewDiagnosisResult"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewDiagnosisResult" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
@@ -138,7 +184,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:background="@drawable/bg_stroke"
                 android:layout_marginVertical="20dp"
+                android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -156,6 +204,16 @@
                     style="@style/TextContent.BodyMedium"
                     android:layout_marginBottom="5dp"
                     android:text="@string/txt_result_scan_lorem" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_stroke"
+                android:padding="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     style="@style/TextContent.HeadingMedium"
@@ -171,16 +229,17 @@
                     style="@style/TextContent.BodyMedium"
                     android:layout_marginBottom="5dp"
                     android:text="@string/txt_result_scan_lorem" />
-
-                <Button
-                    android:id="@+id/btn_remove_to_favorite"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/txt_button_remove_to_favorite"
-                    android:fontFamily="@font/plusjakartasans_bold"/>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_remove_to_favorite"
+                style="@style/CustomButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/txt_button_remove_to_favorite"
+                android:fontFamily="@font/plusjakartasans_bold"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

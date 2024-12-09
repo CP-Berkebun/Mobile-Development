@@ -20,7 +20,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:visibility="visible"
+                android:visibility="gone"
+                android:elevation="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -317,7 +318,7 @@
                         android:gravity="center"
                         android:text="@string/txt_medicine_recommendation"
                         android:fontFamily="@font/plusjakartasans_bold"
-                        app:drawableTopCompat="@drawable/ic_bottle" />
+                        app:drawableTopCompat="@drawable/ic_saved" />
                 </LinearLayout>
 
                 <Button

@@ -33,7 +33,7 @@
             android:layout_below="@+id/text_description"
             android:layout_alignParentStart="true"
             android:layout_marginStart="42dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="70dp"
             android:text="@string/txt_btn_login"
             android:textSize="18sp"
             android:backgroundTint="@color/lime_green"
