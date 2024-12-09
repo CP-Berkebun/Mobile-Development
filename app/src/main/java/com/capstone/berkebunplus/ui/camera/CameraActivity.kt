@@ -1,6 +1,8 @@
 package com.capstone.berkebunplus.ui.camera
 
+import android.app.Dialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,15 +14,15 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.capstone.berkebunplus.R
 import com.capstone.berkebunplus.createCustomTempFile
@@ -31,6 +33,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
+    private var popupDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,28 +48,10 @@ class CameraActivity : AppCompatActivity() {
             startCamera()
         }
         binding.captureImage.setOnClickListener { takePhoto() }
-        binding.pickImage.setOnClickListener {
-            pickImageFromGallery()
-        }
-        // Inflate layout popup dari popup_layout.xml
-        val popupView = layoutInflater.inflate(R.layout.popup_layout, null)
-
-        // Tambahkan popup ke root layout di activity_camera.xml
-        val popupContainer = popupView.findViewById<LinearLayout>(R.id.popupContainer)
-        val btnUnderstand = popupView.findViewById<Button>(R.id.btnUnderstand)
-
-        // Tambahkan popup ke layout activity_camera.xml
-        val rootLayout = binding.root // root layout activity_camera.xml
-        (rootLayout as ViewGroup).addView(popupView)
-
-        // Menampilkan popup
-        showPopup(popupContainer)
-
-        // Menambahkan listener untuk tombol Understand
-        btnUnderstand.setOnClickListener {
-            // Tutup popup
-            hidePopup(popupContainer)
-        }
+        binding.pickImage.setOnClickListener { startGallery() }
+        binding.backToHome.setOnClickListener { finish() }
+        binding.tips.setOnClickListener { showPopupDialog() }
+        showPopupDialog()
     }
 
     public override fun onResume() {
@@ -138,37 +123,26 @@ class CameraActivity : AppCompatActivity() {
         )
     }
 
-    // Fungsi untuk memilih gambar dari galeri
-    private fun pickImageFromGallery() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*" // Menampilkan hanya file gambar
-        startActivityForResult(intent, PICK_IMAGE_REQUEST)
-
-
+    private fun startGallery() {
+        launcherGallery.launch(PickVisualMediaRequest(
+            ActivityResultContracts.PickVisualMedia.ImageOnly
+        ))
     }
 
-    // Mengambil hasil dari pemilihan gambar
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            val selectedImageUri = data?.data
-            if (selectedImageUri != null) {
-                // Menampilkan gambar yang dipilih di ImageView
-                binding.pickImage.setImageURI(selectedImageUri)
-                binding.pickImage.visibility = View.VISIBLE
-                binding.viewFinder.visibility = View.GONE
-
-                // Mengembalikan URI gambar ke activity yang memanggil
-                val resultIntent = Intent()
-                resultIntent.putExtra(EXTRA_CAMERAX_IMAGE, selectedImageUri.toString()) // Menyimpan URI gambar dalam bentuk String
-                setResult(CAMERAX_RESULT, resultIntent)
-                finish() // Menutup activity dan kembali ke HomeFragment atau activity pemanggil
-            } else {
-                Toast.makeText(this, "Gagal memilih gambar.", Toast.LENGTH_SHORT).show()
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            val intent = Intent().apply {
+                putExtra(EXTRA_GALLERY_IMAGE, uri.toString())
             }
+            setResult(GALLERY_IMAGE_RESULT, intent)
+            finish()
+        } else {
+            Toast.makeText(this, "Gagal memilih gambar.", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun hideSystemUI() {
         @Suppress("DEPRECATION")
@@ -202,14 +176,28 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
-    // Fungsi untuk menampilkan popup
-    private fun showPopup(popupContainer: LinearLayout) {
-        popupContainer.visibility = View.VISIBLE
+    private fun showPopupDialog() {
+        if (popupDialog == null) {
+            popupDialog = Dialog(this).apply {
+                setContentView(R.layout.popup_layout)
+                setCancelable(true)
+            }
+        }
+        popupDialog?.show()
+
+        val understand = popupDialog!!.findViewById<Button>(R.id.btnUnderstand)
+        understand.setOnClickListener {
+            hidePopupDialog()
+        }
     }
 
-    // Fungsi untuk menyembunyikan popup
-    private fun hidePopup(popupContainer: LinearLayout) {
-        popupContainer.visibility = View.GONE
+    private fun hidePopupDialog() {
+        popupDialog?.let {
+            if (it.isShowing) {
+                it.dismiss() // Pastikan dialog ditutup
+            }
+        }
+        popupDialog = null
     }
 
     override fun onStart() {
@@ -224,11 +212,10 @@ class CameraActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "CameraActivity"
-        private const val RESULT_OK = 1
         const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
+        const val EXTRA_GALLERY_IMAGE = "Gallery Image"
         const val CAMERAX_RESULT = 200
-        const val GALLERY_RESULT = 100// You can set any unique value
-        const val EXTRA_PICK_IMAGE = "extra_pick_image"
-        private const val PICK_IMAGE_REQUEST = 1 // Tambahkan konstanta untuk request code
+        const val GALLERY_IMAGE_RESULT = 200
+        const val RESULT_OK = 200
     }
 }

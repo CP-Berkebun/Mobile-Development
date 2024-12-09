@@ -6,6 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".ui.diagnosis.DiagnosisFragment">
 
+    <ImageView
+        android:id="@+id/empty"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/nodata"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="105dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/items_result_scan_shimmer" />
+
+            <include layout="@layout/items_result_scan_shimmer" />
+
+            <include layout="@layout/items_result_scan_shimmer" />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="0dp"
@@ -48,5 +84,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView"
         tools:listitem="@layout/items_result_scan" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

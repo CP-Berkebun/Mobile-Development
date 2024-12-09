@@ -12,16 +12,16 @@
     <!-- Login & Register Strings -->
     <string name="txt_welcome">Selamat Datang</string>
     <string name="txt_description_login_one">Silahkan Login terlebih dahulu untuk melanjutkan</string>
-    <string name="txt_description_login_two">Atau daftar dengan</string>
+    <string name="txt_description_login_two">Belum memiliki akun?</string>
 
     <string name="txt_title_register">Daftar</string>
     <string name="txt_description_register_one">Lengkapi data berikut agar dapat login!</string>
     <string name="txt_description_register_two">Sudah Memiliki Akun?</string>
-    <string name="txt_description_register_three">Atau masuk dengan</string>
-    <string name="txt_full_name">John Doe</string>
+    <string name="txt_description_register_three">Atau daftar dengan</string>
+    <string name="txt_full_name">Nama</string>
 
-    <string name="txt_email">johndoe@gmail.com</string>
-    <string name="txt_password">************</string>
+    <string name="txt_email">Email</string>
+    <string name="txt_password">Password</string>
     <string name="txt_btn_google">Akun Google yang ada</string>
     <string name="txt_btn_login">Masuk</string>
     <string name="txt_btn_register">Daftar</string>
@@ -80,8 +80,8 @@
     <string name="txt_wind_speed">Wind Speed</string>
     <string name="txt_pressure">Pressure</string>
     <string name="txt_scan_image">Scan\nGambar</string>
-    <string name="txt_see_diagnosis">Lihat\nDiagnosis</string>
-    <string name="txt_medicine_recommendation">Rekomendasi\nObat</string>
+    <string name="txt_see_diagnosis">Lihat Hasil\nDiagnosis</string>
+    <string name="txt_medicine_recommendation">Simpan Hasil\nDiagnosis</string>
     <string name="txt_button_scan_image">Ambil Gambar</string>
     <string name="txt_fertilizer_calculator">Kalkulator\nPupuk</string>
     <string name="txt_pest_disease"><![CDATA[Penyakit &\n Hama]]></string>
@@ -96,7 +96,7 @@
     <string name="txt_result_scan_name">Nama Penyakit</string>
     <string name="txt_result_scan_symptoms">Gejala</string>
     <string name="txt_result_scan_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="txt_result_scan_list_symptoms">Lorem ipsum, dolor sit amet, consectetur adipiscing elit,</string>
+    <string name="txt_result_scan_list_symptoms">Tungau Laba-Laba</string>
     <string name="txt_button_add_to_favorite">Simpan Hasil</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -128,12 +128,11 @@
     <string name="txt_result_plant_name">Tumbuhan</string>
     <string name="txt_result_scan_diseaseId">Hasil Diagnosis</string>
     <string name="txt_button_remove_to_favorite">Hapus dari Daftar Favorite</string>
-    <string name="set_message_success_login">Berhasil masuk ke akun anda</string>
-    <string name="set_message_success_login_google">Berhasil masuk dengan akun Google!</string>
-    <string name="set_title_error">Gagal:(</string>
-    <string name="set_message_error_login_google">Gagal masuk dengan akun Google!</string>
-    <string name="error">Coba lagi!</string>
-    <string name="set_message_success_signUp">Selamat! Anda berhasil membuat akun!</string>
-
+    <string name="loading">Memprediksi\nGambar...</string>
+    <string name="txt_detail_plant_name">Nama Tumbuhan</string>
+    <string name="txt_detail_diagnosis_name">Hasil Diagnosis</string>
+    <string name="txt_detail_diagnosis">Detail Hasil Diagnosis</string>
+    <string name="txt_description_login_two_three">Atau masuk dengan</string>
+    <string name="txt_confirm_password">Konfirmasi Password</string>
 
 </resources>

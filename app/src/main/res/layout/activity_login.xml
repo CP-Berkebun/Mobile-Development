@@ -8,8 +8,6 @@
     android:padding="16dp"
     android:background="@color/white">
 
-    <!-- Description -->
-
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressIndicator"
         android:layout_width="match_parent"
@@ -77,9 +75,6 @@
         android:paddingEnd="16dp"
         tools:alpha="100"/>
 
-    <!-- Eye Icon to Toggle Password Visibility -->
-
-    <!-- Sign Up Button -->
     <Button
         android:id="@+id/btnLogin"
         style="@style/Widget.Material3.Button"
@@ -94,7 +89,6 @@
         android:textStyle="bold"
         tools:alpha="100"/>
 
-    <!-- Account Exists Section -->
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
@@ -126,7 +120,6 @@
             android:fontFamily="@font/plusjakartasans_bold"/>
     </LinearLayout>
 
-    <!-- Divider -->
     <LinearLayout
         android:id="@+id/layout2"
         android:layout_width="match_parent"
@@ -141,15 +134,16 @@
             android:layout_marginTop="2dp"
             android:layout_margin="20dp"
             android:background="@color/black"/>
-        <!-- Social Media Login -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_description_login_two"
+            android:text="@string/txt_description_login_two_three"
             android:textSize="13sp"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:layout_marginTop="0dp"/>
+      
         <View
             android:layout_width="150dp"
             android:layout_height="1dp"
