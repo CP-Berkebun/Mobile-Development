@@ -3,7 +3,6 @@
 package com.capstone.berkebunplus.ui.auth.register
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -12,16 +11,13 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.capstone.berkebunplus.MainActivity
 import com.capstone.berkebunplus.R
 import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.databinding.ActivityRegisterBinding
-import com.capstone.berkebunplus.ui.auth.AuthViewModelFactory
+import com.capstone.berkebunplus.data.AuthViewModelFactory
 import com.capstone.berkebunplus.ui.auth.login.LoginActivity
-import com.capstone.berkebunplus.ui.auth.login.LoginViewModel
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -35,7 +31,6 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        observeViewModel()
         setupView()
         setupAction()
         playAnimation()
@@ -66,7 +61,6 @@ class RegisterActivity : AppCompatActivity() {
             val email = binding.fieldEmail.text.toString()
             val pass = binding.fieldPassword.text.toString()
             val confirmPass = binding.confirmPassword.text.toString()
-//            registerViewModel.registerUser(fullname, email, pass, confirmPass)
             if (fullName.isNotEmpty() && email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
                 if (pass == confirmPass) {
                     registerUser(fullName, email, pass, confirmPass)
@@ -113,34 +107,6 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
-
-//        private fun observeViewModel() {
-//            registerViewModel.registerStatus.observe(this) { status ->
-//                when (status) {
-//                    is RegisterViewModel.RegisterStatus.Loading -> {
-//                        binding.progressIndicator.visibility = View.VISIBLE
-//                    }
-//
-//                    is RegisterViewModel.RegisterStatus.Success -> {
-//                        binding.progressIndicator.visibility = View.GONE
-//                        Toast.makeText(this, "Registrasi berhasil!", Toast.LENGTH_SHORT).show()
-//
-//                        // Arahkan ke LoginActivity
-//                        val intent = Intent(this, LoginActivity::class.java)
-//                        intent.flags =
-//                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//                        startActivity(intent)
-//                        finish()
-//                    }
-//
-//                    is RegisterViewModel.RegisterStatus.Error -> {
-//                        binding.progressIndicator.visibility = View.GONE
-//                        Toast.makeText(this, status.message, Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//        }
-
 
     private fun playAnimation() {
         val imageStart =

@@ -1,4 +1,4 @@
-package com.capstone.berkebunplus.ui.auth
+package com.capstone.berkebunplus.data
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

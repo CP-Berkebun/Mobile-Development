@@ -52,7 +52,6 @@
 
     <string name="menu_profile">Kembali</string>
 
-    <string name="loading">Memprediksi Gambar...</string>
     <string name="txt_fullname">Nama anda kosong</string>
 
     <string name="txt_btn_understand">Mengerti</string>
@@ -134,5 +133,10 @@
     <string name="txt_detail_diagnosis">Detail Hasil Diagnosis</string>
     <string name="txt_description_login_two_three">Atau masuk dengan</string>
     <string name="txt_confirm_password">Konfirmasi Password</string>
-
+    <string name="set_message_success_login">Berhasil masuk ke akun anda</string>
+    <string name="set_message_success_login_google">Berhasil masuk dengan akun Google!</string>
+    <string name="set_title_error">Gagal:(</string>
+    <string name="set_message_error_login_google">Gagal masuk dengan akun Google!</string>
+    <string name="error">Coba lagi!</string>
+    <string name="set_message_success_signUp">Selamat! Anda berhasil membuat akun!</string>
 </resources>

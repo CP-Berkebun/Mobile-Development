@@ -76,20 +76,44 @@ class HomeFragment : Fragment() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
-        if (!isLocationPermissionGranted()) {
-            requestLocationPermissionLauncher.launch(REQUIRED_PERMISSION_LOCATION)
-        } else {
-            getCurrentLocation()
-        }
-
+        handleLocationPermission()
         binding.btnScanImage.setOnClickListener {
-            if (!isCameraPermissionGranted()) {
-                requestCameraPermissionLauncher.launch(REQUIRED_PERMISSION_CAMERA)
-            } else {
-                startCameraX()
-            }
+            handleCameraPermission()
         }
     }
+
+    private fun isCameraPermissionGranted() =
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            REQUIRED_PERMISSION_CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+
+    private fun isLocationPermissionGranted() =
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            REQUIRED_PERMISSION_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+    private fun handleLocationPermission() {
+        if (isLocationPermissionGranted()) {
+            getCurrentLocation()
+        } else {
+            requestLocationPermissionLauncher.launch(REQUIRED_PERMISSION_LOCATION)
+        }
+    }
+
+    private fun handleCameraPermission() {
+        if (isCameraPermissionGranted()) {
+            if (isLocationPermissionGranted()) {
+                startCameraX()
+            } else {
+                Toast.makeText(requireContext(), "Izin lokasi belum diberikan", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            requestCameraPermissionLauncher.launch(REQUIRED_PERMISSION_CAMERA)
+        }
+    }
+
 
     private fun getCurrentLocation() {
         try {
@@ -97,7 +121,7 @@ class HomeFragment : Fragment() {
                 location?.let {
                     observeWeatherData(it.latitude, it.longitude)
                 } ?: run {
-                    Toast.makeText(requireContext(), "Lokasi tidak tersedia", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Lokasi tidak tersedia, coba lagi.", Toast.LENGTH_SHORT).show()
                 }
             }.addOnFailureListener { exception ->
                 Toast.makeText(requireContext(), "Gagal mendapatkan lokasi: ${exception.message}", Toast.LENGTH_SHORT).show()
@@ -106,6 +130,7 @@ class HomeFragment : Fragment() {
             Toast.makeText(requireContext(), "Tidak dapat mengakses lokasi: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun observeWeatherData(latitude: Double, longitude: Double) {
         viewModel.fetchWeather(latitude, longitude).observe(viewLifecycleOwner) { results ->
@@ -209,25 +234,12 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun isCameraPermissionGranted() =
-        ContextCompat.checkSelfPermission(
-            requireContext(),
-            REQUIRED_PERMISSION_CAMERA
-        ) == PackageManager.PERMISSION_GRANTED
-
-    private fun isLocationPermissionGranted() =
-        ContextCompat.checkSelfPermission(
-            requireContext(),
-            REQUIRED_PERMISSION_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     companion object {
-        private const val RESULT_OK = 1
         private const val REQUIRED_PERMISSION_CAMERA = Manifest.permission.CAMERA
         private const val REQUIRED_PERMISSION_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
     }

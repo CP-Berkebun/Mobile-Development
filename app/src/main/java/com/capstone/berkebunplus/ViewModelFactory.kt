@@ -8,6 +8,7 @@ import com.capstone.berkebunplus.data.local.datastore.SettingViewModel
 import com.capstone.berkebunplus.di.Injection
 import com.capstone.berkebunplus.ui.diagnosis.DiagnosisViewModel
 import com.capstone.berkebunplus.ui.home.HomeViewModel
+import com.capstone.berkebunplus.ui.home.WeatherViewModel
 import com.capstone.berkebunplus.ui.resultscan.ResultScanViewModel
 
 @Suppress("UNCHECKED_CAST")
