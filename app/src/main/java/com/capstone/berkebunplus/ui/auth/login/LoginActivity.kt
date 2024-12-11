@@ -1,7 +1,6 @@
 @file:Suppress("DEPRECATION")
 
 package com.capstone.berkebunplus.ui.auth.login
-
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.app.Activity
@@ -25,13 +24,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.viewModels
-import com.capstone.berkebunplus.ViewModelFactory
 import com.capstone.berkebunplus.data.Result
-import com.capstone.berkebunplus.ui.auth.AuthViewModelFactory
-import com.capstone.berkebunplus.ui.home.HomeViewModel
+import com.capstone.berkebunplus.data.AuthViewModelFactory
 
 class LoginActivity : AppCompatActivity() {
 
@@ -77,8 +72,6 @@ class LoginActivity : AppCompatActivity() {
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 signIn(email, password)
-//                loginViewModel.loginWithEmail(email, password)
-//                binding.progressIndicator.visibility = View.VISIBLE
             } else {
                 Toast.makeText(this, "Kolom tidak boleh kosong!", Toast.LENGTH_SHORT).show()
             }
@@ -90,9 +83,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupGoogleSignIn() {
-        // Set up Google Sign-In options
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id)) // Correct resource ID
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
@@ -183,8 +175,6 @@ class LoginActivity : AppCompatActivity() {
                         create()
                         show()
                     }
-
-//                    Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
                 }
                 is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
             }

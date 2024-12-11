@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -78,14 +76,6 @@ class DiagnosisFragment : Fragment() {
             }
         }
     }
-
-//    private fun showNoDataView(isEmpty: Boolean){
-//        if (isEmpty) {
-//            binding.empty.visibility = View.VISIBLE
-//        } else {
-//            binding.empty.visibility = View.GONE
-//        }
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

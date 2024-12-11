@@ -196,7 +196,7 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="370dp"
-        android:layout_height="48dp"
+        android:layout_height="55dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -222,14 +222,16 @@
 
         <Button
             android:id="@+id/btnLogout"
+            style="@style/Widget.Material3.Button"
             android:layout_width="300dp"
-            android:layout_height="48dp"
+            android:layout_height="60dp"
             android:background="@drawable/round_transparent"
             android:gravity="left"
             android:text="@string/btn_logout"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableStart="@drawable/ic_logout_24"/>
     </LinearLayout>
 </RelativeLayout>
