@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.capstone.berkebunplus.R
 import com.capstone.berkebunplus.databinding.FragmentProfileBinding
 import com.capstone.berkebunplus.ui.auth.login.LoginActivity
+import android.provider.Settings
 import com.capstone.berkebunplus.ui.start.StartActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -50,6 +51,13 @@ class ProfileFragment : Fragment() {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
         }
+
+        binding.btnLanguage.setOnClickListener {
+            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(intent)
+            true
+        }
+
 
         loadUserProfile()
 

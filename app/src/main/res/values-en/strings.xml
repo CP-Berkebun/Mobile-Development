@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Berkebun+</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_diagnosis">Diagnosis</string>
+    <string name="title_profile">Profile</string>
+
+    <!-- Start Strings -->
+    <string name="txt_description_one">Get a better harvest with the help of Berkebun+!</string>
+    <string name="txt_description_two">By logging in or signing up, you agree to the terms of service and privacy policy</string>
+
+    <!-- Login & Register Strings -->
+    <string name="txt_welcome">Welcome</string>
+    <string name="txt_description_login_one">Please log in first to continue</string>
+    <string name="txt_description_login_two">Don\'t have an account?</string>
+
+    <string name="txt_title_register">Sign Up</string>
+    <string name="txt_description_register_one">Complete the following data to log in!</string>
+    <string name="txt_description_register_two">Already have an account?</string>
+    <string name="txt_description_register_three">Or sign up with</string>
+    <string name="txt_full_name">Name</string>
+
+    <string name="txt_password">Password</string>
+    <string name="txt_btn_google">Existing Google Account</string>
+    <string name="txt_btn_login">Log In</string>
+    <string name="txt_btn_register">Sign Up</string>
+
+    <string name="my_profile">Your Profile</string>
+    <string name="text_name">Name</string>
+    <string name="text_email">Email</string>
+    <string name="text_password">Password</string>
+    <string name="txt_desc_facebook">Facebook</string>
+    <string name="txt_edit_profile_image">Change</string>
+    <string name="txt_edit_profile">Save</string>
+    <string name="btn_back_profile">Back</string>
+    <string name="btn_logout">Logout</string>
+
+    <string name="txt_yourName">John Doe</string>
+    <string name="txt_yourEmail">johndoe@gmail.com</string>
+    <string name="txt_about_apps">About\nApplication</string>
+    <string name="txt_btn_edit_profile">Edit Profile</string>
+    <string name="default_user_name">User Name</string>
+    <string name="default_user_email">Unknown Email</string>
+
+    <string name="info_account">Account</string>
+    <string name="desc_info_account">Information about your account</string>
+    <string name="info_about_app">About Application</string>
+    <string name="desc_info_about_app">Information about Berkebun+</string>
+    <string name="info_language">Language</string>
+    <string name="desc_info_language">Choose the language you prefer</string>
+
+    <string name="menu_profile">Back</string>
+
+    <string name="txt_fullname">Your name is empty</string>
+
+    <string name="txt_btn_understand">Understand</string>
+    <string name="default_web_client_id">453542349748-m6skk77pqtbsuajsvpc4p9ncak55hoj0.apps.googleusercontent.com</string>
+
+    <!-- Home Page -->
+    <string name="codes_farmer">This is the farmer icon</string>
+    <string name="codes_weather">This is the weather icon</string>
+    <string name="codes_result_image_scan">This is the result image of plant disease</string>
+    <string name="codes_arrow_back_result_activity">This is the back arrow from result scan activity</string>
+    <string name="codes_symptoms">This is the symptoms icon</string>
+    <string name="savedItems">This is the saved diagnosis result items icon</string>
+
+    <string name="txt_heading_heal_your_plants">Heal Your Plants</string>
+    <string name="txt_heading_soon_feature">Coming Soon</string>
+    <string name="txt_heading_diagnosis_description">Diagnosis Description</string>
+    <string name="txt_heading_treatment">Treatment</string>
+    <string name="txt_heading_medicine_recommendation">Medicine Recommendation</string>
+
+    <string name="txt_hallo">Hello, Farmer\nWelcome</string>
+    <string name="txt_city_country">City, ID</string>
+    <string name="txt_no_internet">-</string>
+    <string name="txt_info_description_weather">Current weather conditions</string>
+    <string name="txt_humidity">Humidity</string>
+    <string name="txt_wind_speed">Wind Speed</string>
+    <string name="txt_pressure">Pressure</string>
+    <string name="txt_scan_image">Scan\nImage</string>
+    <string name="txt_see_diagnosis">View Diagnosis\nResult</string>
+    <string name="txt_medicine_recommendation">Save Diagnosis\nResult</string>
+    <string name="txt_button_scan_image">Take Picture</string>
+    <string name="txt_fertilizer_calculator">Fertilizer\nCalculator</string>
+    <string name="txt_pest_disease"><![CDATA[Pests &\nDiseases]]></string>
+    <string name="txt_cultivation_tips">Cultivation\nTips</string>
+
+    <string name="result_info_city_country">%1$s, %2$s</string>
+    <string name="result_info_temperature">%1$.1f°C</string>
+    <string name="result_info_wind_speed">%1$.1f m/s</string>
+    <string name="result_info_humidity">%1$d%%</string>
+    <string name="result_info_pressure">%1$d hPa</string>
+
+    <string name="txt_result_scan_name">Disease Name</string>
+    <string name="txt_result_scan_symptoms">Symptoms</string>
+    <string name="txt_result_scan_lorem">Lorem ipsum dolor sit amet...</string>
+    <string name="txt_result_scan_list_symptoms">Spider Mites</string>
+    <string name="txt_button_add_to_favorite">Save Result</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="txt_onboarding_welcome">Welcome\nto Berkebun+</string>
+    <string name="txt_onboarding_welcome_desc">"A solution to identify diseases in\nyour plants and treatment guidance"</string>
+    <string name="txt_button_continue">Continue</string>
+
+    <string name="txt_onboarding2">Scan Your Plants\nNow!</string>
+    <string name="txt_onboarding2_desc">You can scan your plants using\na camera or gallery</string>
+
+    <string name="txt_onboarding3">Get Results\nand Treatment!</string>
+    <string name="txt_onboarding3_desc">After scanning, diagnosis\nand treatment information will appear</string>
+    <string name="txt_button_getStarted">Get Started</string>
+    <string name="search_diagnosis_result">Search Diagnosis Results</string>
+    <string name="txt_about_app">About Application</string>
+    <string name="txt_what_is_in_it">What\'s Inside?</string>
+    <string name="txt_main_feature">Main Features</string>
+    <string name="txt_desc_about_app">Berkebun+ is an app designed to help plant lovers take care of their plants more effectively. The app can detect different types of diseases or pests attacking plants and provide appropriate treatment recommendations to solve the problem. In addition, Berkebun+ offers a to-do list feature that guides users on remedial steps to ensure plants can recover and stay healthy. With the support of Berkebun+, plant care becomes more focused and easier to do.</string>
+    <string name="txt_desc_what_is_in_it">1. Information about plants.\n2. Information about the latest weather.\n3. AI-Scanning to detect plant diseases.\n4. Can detect plant diseases through the camera or gallery on a smartphone.\n5. Displays diagnosis results on plants.\n6. Treatment information on plants.\n7. User-friendly interface.</string>
+    <string name="txt_ai_scanning">AI Scanning</string>
+    <string name="txt_desc_main_feature">In this main feature, the plant disease classification method uses the Convolutional Neural Network (CNN) method.</string>
+    <string name="berkebunplus">Berkebun+</string>
+    <string name="email_format_invalid">Invalid email format</string>
+    <string name="password_too_short">Password too short</string>
+    <string name="set_title_success">Success</string>
+    <string name="set_message_success">Successfully logged in with Google!</string>
+    <string name="error">Try again!</string>
+    <string name="set_message_success_signUp">Congratulations! You have successfully created an account!</string>
+    <string name="set_title_error">Failed :(</string>
+    <string name="set_message_success_login">Successfully logged into your account</string>
+    <string name="set_message_success_login_google">Successfully logged in with Google account!</string>
+    <string name="set_next">Continue</string>
+    <string name="txt_result_plant_name">Plant</string>
+    <string name="txt_result_scan_diseaseId">Diagnosis Result</string>
+    <string name="txt_button_remove_to_favorite">Remove from Favorites</string>
+    <string name="loading">Predicting\nImage...</string>
+    <string name="txt_detail_plant_name">Plant Name</string>
+    <string name="txt_detail_diagnosis_name">Diagnosis Result</string>
+    <string name="txt_detail_diagnosis">Diagnosis Result Details</string>
+    <string name="txt_description_login_two_three">Or log in with</string>
+    <string name="txt_confirm_password">Confirm Password</string>
+    <string name="txt_opsi_language">Select Languagea : </string>
+    <string name="txt_indonesia">Indonesia</string>
+    <string name="txt_english">English</string>
+    <string name="txt_espanyol">Spanish</string>
+    <string name="txt_france">French</string>
+    <string name="txt_china">China</string>
+</resources>

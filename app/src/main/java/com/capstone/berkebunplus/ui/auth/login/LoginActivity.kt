@@ -148,7 +148,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun signIn(email: String, password: String) {
         viewModel.loginWithEmail(email, password).observe(this) { result ->
-            when(result) {
+            when(result)  {
                 is Result.Success -> {
                     binding.progressIndicator.visibility = View.GONE
                     AlertDialog.Builder(this).apply {

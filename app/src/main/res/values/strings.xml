@@ -3,7 +3,7 @@
 
     <string name="title_home">Home</string>
     <string name="title_diagnosis">Diagnosis</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_profile">Profil</string>
 
     <!-- Onboarding 1 -->
     <string name="txt_onboarding_welcome">Selamat Datang\ndi Berkebun+</string>
@@ -127,6 +127,11 @@
     <string name="password_too_short">Password terlalu pendek</string>
     <string name="set_title_success">Berhasil</string>
     <string name="set_message_success">Berhasil Login dengan google!</string>
+    <string name="error">Coba lagi!</string>
+    <string name="set_message_success_signUp">Selamat! Anda berhasil membuat akun!</string>
+    <string name="set_title_error">Gagal:(</string>
+    <string name="set_message_success_login">Berhasil masuk ke akun anda</string>
+    <string name="set_message_success_login_google">Berhasil masuk dengan akun Google!</string>
     <string name="set_next">Lanjutkan</string>
     <string name="txt_result_plant_name">Tumbuhan</string>
     <string name="txt_result_scan_diseaseId">Hasil Diagnosis</string>
@@ -137,10 +142,19 @@
     <string name="txt_detail_diagnosis">Detail Hasil Diagnosis</string>
     <string name="txt_description_login_two_three">Atau masuk dengan</string>
     <string name="txt_confirm_password">Konfirmasi Password</string>
+
     <string name="set_message_success_login">Berhasil masuk ke akun anda</string>
     <string name="set_message_success_login_google">Berhasil masuk dengan akun Google!</string>
     <string name="set_title_error">Gagal:(</string>
     <string name="set_message_error_login_google">Gagal masuk dengan akun Google!</string>
     <string name="error">Coba lagi!</string>
     <string name="set_message_success_signUp">Selamat! Anda berhasil membuat akun!</string>
+
+    <string name="txt_opsi_language">Pilih Bahasa : </string>
+    <string name="txt_indonesia">Indonesia</string>
+    <string name="txt_english">Inggris</string>
+    <string name="txt_espanyol">Spanyol</string>
+    <string name="txt_france">Prancis</string>
+    <string name="txt_china">China</string>
+
 </resources>
