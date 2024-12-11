@@ -13,4 +13,6 @@ class RegisterViewModel(private val authRepository: AuthRepository) : ViewModel(
     fun registerUser(fullName: String, email: String, password: String, confirmPassword: String) =
         authRepository.registerUser(fullName, email, password, confirmPassword)
 
+    fun loginWithGoogle(idToken: String) = authRepository.loginWithGoogle(idToken)
+
 }
