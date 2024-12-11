@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.capstone.berkebunplus.R
 import com.capstone.berkebunplus.ViewModelFactory
 import com.capstone.berkebunplus.data.Result
@@ -28,6 +29,7 @@ import com.capstone.berkebunplus.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 @RequiresApi(Build.VERSION_CODES.Q)
 class HomeFragment : Fragment() {
@@ -77,8 +79,27 @@ class HomeFragment : Fragment() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         handleLocationPermission()
+        showName()
         binding.btnScanImage.setOnClickListener {
             handleCameraPermission()
+        }
+        binding.cardViewFertilizerCalculator.setOnClickListener {
+            Toast.makeText(requireContext(), "Fitur belum tersedia", Toast.LENGTH_SHORT).show()
+        }
+        binding.cardViewPestDisease.setOnClickListener {
+            Toast.makeText(requireContext(), "Fitur belum tersedia", Toast.LENGTH_SHORT).show()
+        }
+        binding.cardViewCultivation.setOnClickListener {
+            Toast.makeText(requireContext(), "Fitur belum tersedia", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun showName() {
+        val username = FirebaseAuth.getInstance().currentUser
+        if (username != null) {
+            binding.username.text = username.displayName
+        } else {
+            Toast.makeText(context, "Pengguna tidak ditemukan", Toast.LENGTH_SHORT).show()
         }
     }
 

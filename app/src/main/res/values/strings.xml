@@ -5,6 +5,20 @@
     <string name="title_diagnosis">Diagnosis</string>
     <string name="title_profile">Profile</string>
 
+    <!-- Onboarding 1 -->
+    <string name="txt_onboarding_welcome">Selamat Datang\ndi Berkebun+</string>
+    <string name="txt_onboarding_welcome_desc">"Solusi untuk mengidentifikasi penyakit pada\ntanamanmu dan panduan treatmentnya"</string>
+    <string name="txt_button_continue">Lanjutkan</string>
+
+    <!-- Onboarding 2 -->
+    <string name="txt_onboarding2">Scan Tanamanmu\nSekarang!</string>
+    <string name="txt_onboarding2_desc">Kamu dapat melakukan scan tanamanmu\nmenggunakan camera atau gallery</string>
+
+    <!-- Onboarding 3 -->
+    <string name="txt_onboarding3">Dapatkan Hasil\ndan Treatment!</string>
+    <string name="txt_onboarding3_desc">Setelah scan, akan muncul informasi\ndiagnosis penyakit dan treatmentnya</string>
+    <string name="txt_button_getStarted">Mulai</string>
+
     <!-- Start Strings -->
     <string name="txt_description_one">Dapatkan hasil panen yang lebih banyak dengan bantuan Berkebun+!</string>
     <string name="txt_description_two">Dengan masuk atau mendaftar, kamu menyetujui kebijakan layanan dan kebijakan privasi</string>
@@ -66,12 +80,12 @@
     <string name="savedItems">This is icon of saved result diagnosis items</string>
 
     <string name="txt_heading_heal_your_plants">Sembuhkan Tanaman Kamu</string>
-    <string name="txt_heading_soon_feature">Segera</string>
+    <string name="txt_heading_soon_feature">Fitur segera hadir</string>
     <string name="txt_heading_diagnosis_description">Deskrpisi Diagnosis</string>
     <string name="txt_heading_treatment">Treatment</string>
     <string name="txt_heading_medicine_recommendation">Rekomendasi Obat</string>
 
-    <string name="txt_hallo">Hallo, Pak Tani\nSelamat Datang</string>
+    <string name="txt_hallo">Hallo,</string>
     <string name="txt_city_country">City, ID</string>
     <string name="txt_no_internet">-</string>
     <string name="txt_info_description_weather">Kondisi cuaca saat ini</string>
@@ -84,7 +98,7 @@
     <string name="txt_button_scan_image">Ambil Gambar</string>
     <string name="txt_fertilizer_calculator">Kalkulator\nPupuk</string>
     <string name="txt_pest_disease"><![CDATA[Penyakit &\n Hama]]></string>
-    <string name="txt_cultivation_tips">Cultivation\nTIps</string>
+    <string name="txt_cultivation_tips">Tips\nBudidaya</string>
 
     <string name="result_info_city_country">%1$s, %2$s</string>
     <string name="result_info_temperature">%1$.1f°C</string>
@@ -100,16 +114,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="txt_onboarding_welcome">Selamat Datang\ndi Berkebun+</string>
-    <string name="txt_onboarding_welcome_desc">"Solusi untuk mengidentifikasi penyakit pada\ntanamanmu dan panduan treatmentnya"</string>
-    <string name="txt_button_continue">Lanjutkan</string>
-
-    <string name="txt_onboarding2">Scan Tanamanmu\nSekarang!</string>
-    <string name="txt_onboarding2_desc">Kamu dapat melakukan scan tanamanmu\nmenggunakan camera atau gallery</string>
-
-    <string name="txt_onboarding3">Dapatkan Hasil\ndan Treatment!</string>
-    <string name="txt_onboarding3_desc">Setelah scan, akan muncul informasi\ndiagnosis penyakit dan treatmentnya</string>
-    <string name="txt_button_getStarted">Mulai</string>
     <string name="search_diagnosis_result">Cari Hasil Diagnosis</string>
     <string name="txt_about_app">Tentang Aplikasi</string>
     <string name="txt_what_is_in_it">Ada Apa Saja?</string>
