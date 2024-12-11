@@ -22,10 +22,16 @@ import com.capstone.berkebunplus.databinding.ActivityRegisterBinding
 import com.capstone.berkebunplus.ui.auth.AuthViewModelFactory
 import com.capstone.berkebunplus.ui.auth.login.LoginActivity
 import com.capstone.berkebunplus.ui.auth.login.LoginViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.Task
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var googleSignInClient: GoogleSignInClient
     private val viewModel: RegisterViewModel by viewModels {
         AuthViewModelFactory.getInstance()
     }
@@ -36,6 +42,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 //        observeViewModel()
+        setupGoogleSignIn()
         setupView()
         setupAction()
         playAnimation()
@@ -78,7 +85,77 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnAuthGoogle.setOnClickListener {
+            signInGoogle()
+        }
     }
+
+    private fun setupGoogleSignIn() {
+        // Set up Google Sign-In options
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id)) // Correct resource ID
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+    }
+
+    private fun signInGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        launcher.launch(signInIntent)
+    }
+
+    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            handleResults(task)
+        }
+    }
+
+    private fun handleResults(task: Task<GoogleSignInAccount>) {
+        if (task.isSuccessful) {
+            val account: GoogleSignInAccount? = task.result
+            account?.idToken?.let { idToken ->
+                viewModel.loginWithGoogle(idToken).observe(this) { result ->
+                    when(result) {
+                        is Result.Success -> {
+                            binding.progressIndicator.visibility = View.GONE
+                            AlertDialog.Builder(this).apply {
+                                setTitle(getString(R.string.set_title_success))
+                                setMessage(getString(R.string.set_message_success_login_google))
+                                setPositiveButton(getString(R.string.txt_btn_login)) { _, _ ->
+                                    val intent = Intent(this@RegisterActivity, MainActivity::class.java).apply {
+                                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    }
+                                    startActivity(intent)
+                                    finish()
+                                }
+                                create()
+                                show()
+                            }
+                        }
+                        is Result.Error -> {
+                            binding.progressIndicator.visibility = View.GONE
+                            AlertDialog.Builder(this).apply {
+                                setTitle(getString(R.string.set_title_error))
+                                setMessage(result.message)
+                                setPositiveButton(getString(R.string.error)) { _, _ ->
+                                }
+                                create()
+                                show()
+                            }
+                            Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                        }
+                        is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
+                    }
+                }
+            }
+        } else {
+            Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
     private fun registerUser(fullName: String, email: String, pass: String, confirmPass: String) {
         viewModel.registerUser(fullName, email, pass, confirmPass).observe(this) { result ->
             when(result) {

@@ -32,9 +32,7 @@ class ProfileActivity : AppCompatActivity() {
         // Optional: Make email field read-only
         binding.emailInput.keyListener = null
 
-        binding.btnBackProfile.setOnClickListener{
-
-        }
+        binding.btnBackProfile.setOnClickListener { finish() }
 
         // Tombol Simpan Profil
         binding.editProfile.setOnClickListener {
