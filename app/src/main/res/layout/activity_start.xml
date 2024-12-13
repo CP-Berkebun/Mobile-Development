@@ -1,84 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".ui.start.StartActivity">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="205dp"
-            android:layout_height="54dp"
-            android:layout_below="@+id/image_avatar"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="103dp"
-            android:layout_marginTop="33dp"
-            android:layout_marginEnd="102dp"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="@color/black"
-            android:textSize="36sp"
-            android:alpha="0"
-            android:fontFamily="@font/plusjakartasans_extrabold"
-            tools:alpha="100"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button_masuk"
-            style="@style/Widget.Material3.Button"
-            android:layout_width="330dp"
-            android:layout_height="60dp"
-            android:layout_below="@+id/text_description"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="70dp"
-            android:text="@string/txt_btn_login"
-            android:textSize="18sp"
-            android:backgroundTint="@color/lime_green"
-            android:alpha="0"
-            android:fontFamily="@font/plusjakartasans_extrabold"
-            tools:alpha="100"/>
+                <ImageView
+                    android:id="@+id/image_avatar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="250dp"
+                    android:layout_height="300dp"
+                    android:alpha="0"
+                    android:layout_gravity="center"
+                    android:src="@drawable/avatar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:alpha="100"
+                    tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/text_agreement"
-            android:layout_width="309dp"
-            android:layout_height="45dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="51dp"
-            android:layout_marginTop="658dp"
-            android:gravity="center"
-            android:text="@string/txt_description_two"
-            android:textColor="@color/black"
-            android:alpha="0"
-            android:textSize="11sp"
-            tools:alpha="100"/>
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="205dp"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/image_avatar"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:alpha="0"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/plusjakartasans_extrabold"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:textColor="@color/black"
+                    android:textSize="36sp"
+                    tools:alpha="100"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="103dp"
+                    tools:layout_editor_absoluteY="368dp" />
 
-        <TextView
-            android:id="@+id/text_description"
-            android:layout_width="309dp"
-            android:layout_height="45dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="421dp"
-            android:gravity="center"
-            android:text="@string/txt_description_one"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/text_description"
+                    android:layout_width="309dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/txt_description_one"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="51dp"
+                    tools:layout_editor_absoluteY="440dp" />
 
-        <ImageView
-            android:id="@+id/image_avatar"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:alpha="0"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/avatar"
-            tools:alpha="100"/>
-</RelativeLayout>
+                <Button
+                    android:id="@+id/button_masuk"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="330dp"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/text_description"
+                    android:layout_alignParentStart="true"
+                    android:alpha="0"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/lime_green"
+                    android:fontFamily="@font/plusjakartasans_extrabold"
+                    android:text="@string/txt_btn_login"
+                    android:textSize="18sp"
+                    tools:alpha="100"
+                    android:layout_marginTop="100dp"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="40dp"
+                    tools:layout_editor_absoluteY="545dp" />
+
+                <TextView
+                    android:id="@+id/text_agreement"
+                    android:layout_width="309dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:alpha="0"
+                    android:layout_gravity="center"
+                    android:text="@string/txt_description_two"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:gravity="center"
+                    tools:alpha="100"
+                    android:layout_marginTop="20dp"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="51dp"
+                    tools:layout_editor_absoluteY="655dp" />
+
+        </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,6 @@ import com.capstone.berkebunplus.ui.diagnosis.DiagnosisFragment
 import com.capstone.berkebunplus.ui.home.HomeFragment
 import com.capstone.berkebunplus.ui.home.HomeViewModel
 
-@RequiresApi(Build.VERSION_CODES.Q)
 class ResultScanActivity : AppCompatActivity() {
 
     private var _binding: ActivityResultScanBinding? = null

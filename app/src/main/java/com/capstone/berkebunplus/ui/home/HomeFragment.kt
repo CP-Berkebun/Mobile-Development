@@ -31,7 +31,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-@RequiresApi(Build.VERSION_CODES.Q)
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -205,7 +204,7 @@ class HomeFragment : Fragment() {
     private fun uploadImage() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
+            val imageFile = uriToFile(uri, requireContext())
             viewModel.predictImage(imageFile, userId).observe(viewLifecycleOwner) { result ->
                 when(result) {
                     is Result.Success -> {

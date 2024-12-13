@@ -10,14 +10,7 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        getByName("debug") {
-            storeFile = file("D:\\Project\\Capstone Project\\BerkebunKeystore\\keystore.jks")
-            storePassword = "berkebunplus"
-            keyAlias = "keyberkebun"
-            keyPassword = "berkebunplus"
-        }
-    }
+    
     namespace = "com.capstone.berkebunplus"
     compileSdk = 34
 

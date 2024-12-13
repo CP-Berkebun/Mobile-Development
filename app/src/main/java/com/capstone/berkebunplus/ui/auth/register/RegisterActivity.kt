@@ -3,6 +3,7 @@
 package com.capstone.berkebunplus.ui.auth.register
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -11,8 +12,10 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.capstone.berkebunplus.MainActivity
 import com.capstone.berkebunplus.R
 import com.capstone.berkebunplus.data.Result
 import com.capstone.berkebunplus.databinding.ActivityRegisterBinding
