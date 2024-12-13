@@ -94,6 +94,12 @@ To run this project locally, follow these steps:
    - Connect an Android device via USB or set up an emulator in Android Studio.
    - Click the **Run** button (green triangle icon) to build and launch the application.
 
+## Youtube Demo Aplication
+https://youtu.be/Y-g4-8tU2Rk?si=QVwZcdz3oehXdatX
+
+## 📱 Install APK 
+https://drive.google.com/drive/folders/1cisDVuTD5TTsLbVdBZ2Roe9Bnp5q8KdO?usp=sharing
+
 ## 💡 About this repo
 
 This mobile development was created by mobile development cohort:
